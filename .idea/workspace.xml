@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7684a401-ee60-413b-b2e5-d7db2fec9863" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/dataset/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataset/dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/prototype/captchas_generate.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/prototype/captchas_solve.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jupyter Notebook" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="JupyterTrust" id="d161c8bc-4fc3-4c27-8a06-c14b1e08bb47">
+    <option name="files">
+      <option value="src/prototype/captchas_generate.ipynb" />
+      <option value="src/prototype/captchas_solve.ipynb" />
+    </option>
+  </component>
+  <component name="ProjectId" id="1ac9Az0mqHHOM028Wfpi8aIeU72" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ulozto-captcha-solver" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/.local/share/virtualenvs/ulozto-captcha-solver-U1uSqFIm/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7684a401-ee60-413b-b2e5-d7db2fec9863" name="Default Changelist" comment="" />
+      <created>1587023876248</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587023876248</updated>
+      <workItem from="1587023879487" duration="630000" />
+      <workItem from="1587024517383" duration="2738000" />
+      <workItem from="1587032663482" duration="3635000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="307" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587024376727">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="307" y="86" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1587024376727" />
+    <state x="535" y="31" width="619" height="795" key="#main" timestamp="1587024317395">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="535" y="31" width="619" height="795" key="#main/67.27.1853.1053@67.27.1853.1053" timestamp="1587024317395" />
+    <state width="1668" height="230" key="GridCell.Tab.0.bottom" timestamp="1587028118245">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1668" height="230" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587028118245" />
+    <state width="1668" height="230" key="GridCell.Tab.0.center" timestamp="1587028118244">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1668" height="230" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587028118244" />
+    <state width="1668" height="230" key="GridCell.Tab.0.left" timestamp="1587028118244">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1668" height="230" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587028118244" />
+    <state width="1668" height="230" key="GridCell.Tab.0.right" timestamp="1587028118245">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1668" height="230" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587028118245" />
+    <state width="1668" height="230" key="GridCell.Tab.1.bottom" timestamp="1587028118437">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1668" height="230" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587028118437" />
+    <state width="1668" height="230" key="GridCell.Tab.1.center" timestamp="1587028118436">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1668" height="230" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587028118436" />
+    <state width="1668" height="230" key="GridCell.Tab.1.left" timestamp="1587028118435">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1668" height="230" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587028118435" />
+    <state width="1668" height="230" key="GridCell.Tab.1.right" timestamp="1587028118437">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1668" height="230" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587028118437" />
+    <state x="426" y="183" key="SettingsEditor" timestamp="1587034843562">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="426" y="183" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1587034843562" />
+    <state x="506" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1587032661543">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="506" y="256" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1587032661543" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ulozto_captcha_solver$main.coverage" NAME="main Coverage Results" MODIFIED="1587024317506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+  </component>
+</project>
