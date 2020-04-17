@@ -13,7 +13,7 @@ class OneCharEncoder:
 
     def encode(self, string):
         result = []
-        result.append(self.encode_char(string[-2]))
+        result.append(self.encode_char(string[1]))
         return np.array(result)
 
     # def encode(self, input):

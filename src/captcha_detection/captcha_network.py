@@ -18,44 +18,40 @@ from dataset.preprocessing.labels_preprocessors.string_encoder import StringEnco
 
 class CaptchaNetwork:
     def __init__(self, image_shape, classes: int, time_steps: int, args):
-        # classes += 1
         self._classes = classes
         self._time_steps = time_steps
         input_shape = (image_shape[0], image_shape[1], 1)
 
         input = tf.keras.layers.Input(shape=input_shape)
+
         layer = input
         layer = tf.keras.layers.Convolution2D(
-            filters=16, kernel_size=8, strides=4, padding="same", use_bias=False)(layer)
+            filters=32, kernel_size=5, strides=3, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
 
         layer = tf.keras.layers.Convolution2D(
-            filters=32, kernel_size=4, strides=2, padding="same", use_bias=False)(layer)
+            filters=32, kernel_size=5, strides=3, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
 
         layer = tf.keras.layers.Convolution2D(
-            filters=32, kernel_size=4, strides=2, padding="same", use_bias=False)(layer)
+            filters=32, kernel_size=5, strides=3, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
 
         layer = tf.keras.layers.Convolution2D(
-            filters=64, kernel_size=4, strides=2, padding="same", use_bias=False)(layer)
+            filters=32, kernel_size=3, strides=1, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
-
-        conv_to_rnn_shape = (layer.shape[1], layer.shape[2] * layer.shape[3])
-        layer = tf.keras.layers.Reshape(target_shape=conv_to_rnn_shape)(layer)
-
-        layer = tf.keras.layers.Dense(units=time_steps, activation="relu")(layer)
-        layer = tf.keras.layers.Permute((2, 1))(layer)
 
         layer = tf.keras.layers.Flatten()(layer)
 
-        layer = tf.keras.layers.Dense(units=100, activation="relu")(layer)
-        layer = tf.keras.layers.Dropout(0.5)(layer)
-        layer = tf.keras.layers.Dense(units=50, activation="relu")(layer)
+        layer = tf.keras.layers.Dense(units=256, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
         layer = tf.keras.layers.Dropout(0.5)(layer)
         output = tf.keras.layers.Dense(units=classes, activation="softmax")(layer)
 

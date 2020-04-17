@@ -14,7 +14,7 @@ if __name__ == "__main__":
     # Parse arguments
     parser = argparse.ArgumentParser()
     parser.add_argument("--batch_size", default=32, type=int, help="Batch size.")
-    parser.add_argument("--epochs", default=500, type=int, help="Number of epochs.")
+    parser.add_argument("--epochs", default=1500, type=int, help="Number of epochs.")
     parser.add_argument("--out_dir", default="../out", type=str, help="Out dir")
     parser.add_argument("--seed", default=42, type=int)
     args = parser.parse_args()
