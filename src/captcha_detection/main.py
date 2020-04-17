@@ -1,10 +1,7 @@
-import os
-
 import numpy as np
 import random
 
-from dataset.annotations_generator import AnnotationsGenerator
-from captcha_network import CaptchaNetwork
+from captcha_detection.captcha_network import CaptchaNetwork
 from dataset.captcha_dataset import CaptchaDataset
 
 import argparse

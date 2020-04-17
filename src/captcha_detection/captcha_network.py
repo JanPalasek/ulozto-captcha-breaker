@@ -5,6 +5,7 @@ import tensorflow as tf
 from tensorflow_core.python.keras.utils.vis_utils import plot_model
 from tensorflow.keras import backend as K
 
+from accuracy.correctly_classified_captcha_accuracy import CorrectlyClassifiedCaptchaAccuracy
 from dataset.captcha_dataset import CaptchaDataset
 from dataset.data_batcher import DataBatcher
 from dataset.preprocessing.image_preprocessors.image_cut_preprocessor import ImageCutPreprocessor
@@ -66,11 +67,13 @@ class CaptchaNetwork:
 
         self._metrics = {
             "loss": tf.metrics.Mean(),
-            "accuracy": tf.keras.metrics.SparseCategoricalAccuracy()
+            "accuracy": tf.keras.metrics.SparseCategoricalAccuracy(),
+            "correct_accuracy": CorrectlyClassifiedCaptchaAccuracy()
         }
         self._validation_metrics = {
             "loss": tf.metrics.Mean(),
-            "accuracy": tf.keras.metrics.SparseCategoricalAccuracy()
+            "accuracy": tf.keras.metrics.SparseCategoricalAccuracy(),
+            "correct_accuracy": CorrectlyClassifiedCaptchaAccuracy()
         }
         self._writer = tf.summary.create_file_writer(args.logdir, flush_millis=10 * 1000)
 
@@ -79,7 +82,7 @@ class CaptchaNetwork:
             NormalizeImagePreprocessor()
         ])
         label_preprocess_pipeline = LabelPreprocessPipeline(
-            # StringEncoder(available_chars="_0123456789")
+            # StringEncoder(available_chars="0123456789")
             OneCharEncoder(available_chars="0123456789")
         )
 
@@ -96,13 +99,15 @@ class CaptchaNetwork:
 
             train_loss = self._metrics["loss"].result()
             train_acc = self._metrics["accuracy"].result()
+            train_correct_acc = self._metrics["correct_accuracy"].result()
 
             dev_loss = self._validation_metrics["loss"].result()
             dev_acc = self._validation_metrics["accuracy"].result()
+            dev_correct_acc = self._validation_metrics["correct_accuracy"].result()
 
             print(
-                f"\rEpoch: {epoch + 1}, train-loss: {train_loss:.4f}, train-acc: {train_acc:.4f}, "
-                f"dev-loss: {dev_loss:.4f}, dev-acc: {dev_acc:.4f}", flush=True)
+                f"\rEpoch: {epoch + 1}, train-loss: {train_loss:.4f}, train-acc: {train_acc:.4f}, train-correct-dev: {train_correct_acc:.4f}, "
+                f"dev-loss: {dev_loss:.4f}, dev-acc: {dev_acc:.4f}, dev-correct-acc: {dev_correct_acc:.4f}", flush=True)
 
     def _train_epoch(self, inputs, labels, batch_size):
         for i, (batch_inputs, batch_labels) in enumerate(DataBatcher(batch_size, inputs, labels).batches()):
@@ -118,6 +123,7 @@ class CaptchaNetwork:
         for i, (batch_inputs, batch_labels) in enumerate(DataBatcher(batch_size, inputs, labels).batches()):
             self._evaluate_batch(batch_inputs, batch_labels)
 
+    @tf.function
     def _evaluate_batch(self, batch_inputs, batch_labels):
         logits = self._model(batch_inputs, training=False)
         batch_labels = tf.squeeze(batch_labels)
@@ -138,18 +144,12 @@ class CaptchaNetwork:
                     metric.update_state(y_true=batch_labels, y_pred=logits)
                 tf.summary.scalar("dev/{}".format(name), metric.result())
 
-    # @tf.function
+    @tf.function
     def _train_batch(self, inputs, labels):
         with tf.GradientTape() as tape:
             logits = self._model(inputs, training=True)
             labels = tf.squeeze(labels)
-            # logit_length = tf.fill([tf.shape(logits)[0]], tf.shape(logits)[1])
-            # label_length = tf.fill([tf.shape(labels)[0]], tf.shape(labels)[1])
 
-            # loss = K.ctc_batch_cost(y_true=labels, y_pred=logits, input_length=logit_length, label_length=label_length)
-            # loss = tf.nn.ctc_loss(
-            #     labels=labels, logits=logits, label_length=label_length,
-            #     logit_length=logit_length, logits_time_major=False)
             loss = tf.losses.sparse_categorical_crossentropy(labels, logits)
             loss = tf.reduce_mean(loss)
 
