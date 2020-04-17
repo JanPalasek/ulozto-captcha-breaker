@@ -4,7 +4,7 @@ from dataset.preprocessing.labels_preprocessors.string_encoder import StringEnco
 
 
 class LabelPreprocessPipeline:
-    def __init__(self, encoder: StringEncoder):
+    def __init__(self, encoder):
         self._encoder = encoder
 
     def __call__(self, labels):

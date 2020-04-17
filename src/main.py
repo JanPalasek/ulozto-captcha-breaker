@@ -16,8 +16,8 @@ import tensorflow as tf
 if __name__ == "__main__":
     # Parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("--batch_size", default=1, type=int, help="Batch size.")
-    parser.add_argument("--epochs", default=30, type=int, help="Number of epochs.")
+    parser.add_argument("--batch_size", default=32, type=int, help="Batch size.")
+    parser.add_argument("--epochs", default=500, type=int, help="Number of epochs.")
     parser.add_argument("--out_dir", default="../out", type=str, help="Out dir")
     parser.add_argument("--seed", default=42, type=int)
     args = parser.parse_args()
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     data = dataset.get_data()
 
     network = CaptchaNetwork(image_shape=image_shape,
-                             classes=classes, time_steps=image_shape[1] // classes,
+                             classes=classes, time_steps=100,
                              args=args)
 
     network.train(data, args)

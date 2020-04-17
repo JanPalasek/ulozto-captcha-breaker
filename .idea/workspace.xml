@@ -2,29 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7684a401-ee60-413b-b2e5-d7db2fec9863" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/captcha_network.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataset/annotations_generator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataset/captcha_dataset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataset/data_batcher.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataset/preprocessing/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataset/preprocessing/image_preprocessors/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataset/preprocessing/image_preprocessors/image_cut_preprocessor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataset/preprocessing/image_preprocessors/image_preprocessor_pipeline.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataset/preprocessing/image_preprocessors/normalize_image_preprocessor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataset/preprocessing/labels_preprocessors/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataset/preprocessing/labels_preprocessors/label_preprocess_pipeline.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataset/preprocessing/labels_preprocessors/one_hot_encoder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataset/preprocessing/labels_preprocessors/string_encoder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ulozto-captcha-solver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ulozto-captcha-solver.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataset/preprocessing/labels_preprocessors/one_char_encoder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataset/dataset.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/captcha_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/captcha_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataset/annotations_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataset/annotations_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataset/data_batcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataset/data_batcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataset/preprocessing/image_preprocessors/image_preprocessor_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataset/preprocessing/image_preprocessors/image_preprocessor_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataset/preprocessing/labels_preprocessors/label_preprocess_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataset/preprocessing/labels_preprocessors/label_preprocess_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/prototype/captchas_generate.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/prototype/captchas_generate.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/prototype/captchas_solve.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/prototype/captchas_solve.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +55,29 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="annotations_generator" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ulozto-captcha-solver" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/dataset" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/dataset/annotations_generator.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ulozto-captcha-solver" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -95,6 +103,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.annotations_generator" />
       </list>
     </recent_temporary>
   </component>
@@ -113,6 +122,8 @@
       <workItem from="1587032663482" duration="7936000" />
       <workItem from="1587041615498" duration="2884000" />
       <workItem from="1587044537375" duration="22210000" />
+      <workItem from="1587071639563" duration="1104000" />
+      <workItem from="1587073609100" duration="15246000" />
     </task>
     <servers />
   </component>
@@ -132,50 +143,50 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="535" y="31" width="619" height="795" key="#main/67.27.1853.1053@67.27.1853.1053" timestamp="1587024317395" />
-    <state width="1636" height="506" key="DebuggerActiveHint" timestamp="1587066272707">
+    <state width="1636" height="506" key="DebuggerActiveHint" timestamp="1587115387923">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1636" height="506" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1587066272707" />
-    <state width="1853" height="370" key="GridCell.Tab.0.bottom" timestamp="1587070658129">
+    <state width="1636" height="506" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1587115387923" />
+    <state width="1853" height="357" key="GridCell.Tab.0.bottom" timestamp="1587119464050">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="370" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587070658129" />
-    <state width="1853" height="370" key="GridCell.Tab.0.center" timestamp="1587070658128">
+    <state width="1853" height="357" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587119464050" />
+    <state width="1853" height="357" key="GridCell.Tab.0.center" timestamp="1587119464049">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="370" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587070658128" />
-    <state width="1853" height="370" key="GridCell.Tab.0.left" timestamp="1587070658128">
+    <state width="1853" height="357" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587119464049" />
+    <state width="1853" height="357" key="GridCell.Tab.0.left" timestamp="1587119464049">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="370" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587070658128" />
-    <state width="1853" height="370" key="GridCell.Tab.0.right" timestamp="1587070658129">
+    <state width="1853" height="357" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587119464049" />
+    <state width="1853" height="357" key="GridCell.Tab.0.right" timestamp="1587119464050">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="370" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587070658129" />
-    <state width="1853" height="343" key="GridCell.Tab.1.bottom" timestamp="1587069387442">
+    <state width="1853" height="357" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587119464050" />
+    <state width="1853" height="343" key="GridCell.Tab.1.bottom" timestamp="1587116432446">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="343" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587069387442" />
-    <state width="1853" height="343" key="GridCell.Tab.1.center" timestamp="1587069387441">
+    <state width="1853" height="343" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587116432446" />
+    <state width="1853" height="343" key="GridCell.Tab.1.center" timestamp="1587116432446">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="343" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587069387441" />
-    <state width="1853" height="343" key="GridCell.Tab.1.left" timestamp="1587069387441">
+    <state width="1853" height="343" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587116432446" />
+    <state width="1853" height="343" key="GridCell.Tab.1.left" timestamp="1587116432445">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="343" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587069387441" />
-    <state width="1853" height="343" key="GridCell.Tab.1.right" timestamp="1587069387442">
+    <state width="1853" height="343" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587116432445" />
+    <state width="1853" height="343" key="GridCell.Tab.1.right" timestamp="1587116432446">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="343" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587069387442" />
+    <state width="1853" height="343" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587116432446" />
     <state x="307" y="202" key="SettingsEditor" timestamp="1587047071796">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="307" y="202" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1587047071796" />
-    <state width="926" height="527" key="XDebugger.FullValuePopup" timestamp="1587061506653">
+    <state width="926" height="527" key="XDebugger.FullValuePopup" timestamp="1587107685376">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="926" height="527" key="XDebugger.FullValuePopup/67.27.1853.1053@67.27.1853.1053" timestamp="1587061506653" />
+    <state width="926" height="527" key="XDebugger.FullValuePopup/67.27.1853.1053@67.27.1853.1053" timestamp="1587107685376" />
     <state x="506" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1587032661543">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -199,6 +210,36 @@
           <line>23</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/tensorflow_core/python/keras/backend.py</url>
+          <line>5761</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/tensorflow_core/python/ops/gen_ctc_ops.py</url>
+          <line>259</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/tensorflow_core/python/ops/gen_ctc_ops.py</url>
+          <line>263</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/tensorflow_core/python/ops/gen_ctc_ops.py</url>
+          <line>320</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/captcha_network.py</url>
+          <line>47</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/captcha_network.py</url>
+          <line>96</line>
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -209,11 +250,13 @@
         <watch expression="os.path.splitext(item)[0]" language="Python" />
       </configuration>
       <configuration name="PythonConfigurationType">
-        <watch expression="layer" language="Python" />
+        <watch expression="layer.shape" language="Python" />
+        <watch expression="tf.argmax(logits, axis=1)" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ulozto_captcha_solver$main.coverage" NAME="main Coverage Results" MODIFIED="1587070802367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/ulozto_captcha_solver$annotations_generator.coverage" NAME="annotations_generator Coverage Results" MODIFIED="1587116934938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/dataset" />
+    <SUITE FILE_PATH="coverage/ulozto_captcha_solver$main.coverage" NAME="main Coverage Results" MODIFIED="1587118461361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>

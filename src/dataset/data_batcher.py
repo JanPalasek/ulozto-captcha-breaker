@@ -1,3 +1,5 @@
+import random
+
 import numpy as np
 
 
@@ -9,11 +11,20 @@ class DataBatcher:
 
     def batches(self):
         # TODO: currently ignoring last batch
-        for batch_idx in range(len(self._inputs // self._batch_size)):
+        inputs = np.copy(self._inputs)
+        labels = np.copy(self._labels)
+        indices = list(range(len(self._inputs)))
+        random.shuffle(indices)
+
+        inputs = inputs[indices]
+        labels = labels[indices]
+
+        # TODO: shuffle
+        for batch_idx in range(len(self._inputs) // self._batch_size):
             first_item_idx = batch_idx * self._batch_size
 
-            batch_inputs = self._inputs[first_item_idx:first_item_idx + self._batch_size]
-            batch_labels = self._labels[first_item_idx:first_item_idx + self._batch_size]
+            batch_inputs = inputs[first_item_idx:first_item_idx + self._batch_size]
+            batch_labels = labels[first_item_idx:first_item_idx + self._batch_size]
 
             yield (batch_inputs,
                    batch_labels)
