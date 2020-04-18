@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 
-from src.accuracy.correctly_classified_captcha_accuracy import CorrectlyClassifiedCaptchaAccuracy
+from accuracy.correctly_classified_captcha_accuracy import CorrectlyClassifiedCaptchaAccuracy
 
 
 class CorrectlyClassifiedCaptchaAccuracyTestCase(unittest.TestCase):

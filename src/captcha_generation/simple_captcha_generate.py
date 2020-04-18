@@ -1,6 +1,9 @@
 import argparse
 import os
 
+import sys
+sys.path.insert(0, "src")
+
 from captcha.image import ImageCaptcha
 
 from dataset.annotations_generator import AnnotationsGenerator

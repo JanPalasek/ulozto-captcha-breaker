@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7684a401-ee60-413b-b2e5-d7db2fec9863" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataset/preprocessing/image_preprocessors/image_preprocessor_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataset/preprocessing/image_preprocessors/image_preprocessor_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataset/preprocessing/labels_preprocessors/label_preprocess_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataset/preprocessing/labels_preprocessors/label_preprocess_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/accuracy_tests/correctly_classified_captcha_accuracy_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/accuracy_tests/correctly_classified_captcha_accuracy_tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.sh" beforeDir="false" afterPath="$PROJECT_DIR$/train.sh" afterDir="false" />
-    </list>
+    <list default="true" id="7684a401-ee60-413b-b2e5-d7db2fec9863" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -150,7 +144,7 @@
       <workItem from="1587044537375" duration="22210000" />
       <workItem from="1587071639563" duration="1104000" />
       <workItem from="1587073609100" duration="37497000" />
-      <workItem from="1587206106406" duration="19320000" />
+      <workItem from="1587206106406" duration="19972000" />
     </task>
     <servers />
   </component>
@@ -178,22 +172,22 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="653" y="387" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1587240340099" />
-    <state width="1853" height="367" key="GridCell.Tab.0.bottom" timestamp="1587245153612">
+    <state width="1853" height="367" key="GridCell.Tab.0.bottom" timestamp="1587245351261">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="367" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587245153612" />
-    <state width="1853" height="367" key="GridCell.Tab.0.center" timestamp="1587245153611">
+    <state width="1853" height="367" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587245351261" />
+    <state width="1853" height="367" key="GridCell.Tab.0.center" timestamp="1587245351260">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="367" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587245153611" />
-    <state width="1853" height="367" key="GridCell.Tab.0.left" timestamp="1587245153610">
+    <state width="1853" height="367" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587245351260" />
+    <state width="1853" height="367" key="GridCell.Tab.0.left" timestamp="1587245351259">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="367" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587245153610" />
-    <state width="1853" height="367" key="GridCell.Tab.0.right" timestamp="1587245153612">
+    <state width="1853" height="367" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587245351259" />
+    <state width="1853" height="367" key="GridCell.Tab.0.right" timestamp="1587245351260">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="367" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587245153612" />
+    <state width="1853" height="367" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587245351260" />
     <state width="1853" height="342" key="GridCell.Tab.1.bottom" timestamp="1587244315796">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -300,7 +294,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ulozto_captcha_solver$Unittests_for_correctly_classified_captcha_accuracy_tests_CorrectlyClassifiedCaptchaAccuracyTestCase_test_succeed_fail.coverage" NAME="Unittests for correctly_classified_captcha_accuracy_tests.CorrectlyClassifiedCaptchaAccuracyTestCase.test_succeed_fail Coverage Results" MODIFIED="1587231576734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/accuracy_tests" />
-    <SUITE FILE_PATH="coverage/ulozto_captcha_solver$train.coverage" NAME="train Coverage Results" MODIFIED="1587245134228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ulozto_captcha_solver$train.coverage" NAME="train Coverage Results" MODIFIED="1587245340906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ulozto_captcha_solver$simple_captcha_generate.coverage" NAME="simple_captcha_generate Coverage Results" MODIFIED="1587244315774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ulozto_captcha_solver$Unittests_for_correctly_classified_captcha_accuracy_tests_CorrectlyClassifiedCaptchaAccuracyTestCase.coverage" NAME="Unittests for correctly_classified_captcha_accuracy_tests.CorrectlyClassifiedCaptchaAccuracyTestCase Coverage Results" MODIFIED="1587231721664" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/accuracy_tests" />
     <SUITE FILE_PATH="coverage/ulozto_captcha_solver$Unittests_for_correctly_classified_captcha_accuracy_tests_CorrectlyClassifiedCaptchaAccuracyTestCase_test_basic.coverage" NAME="Unittests for correctly_classified_captcha_accuracy_tests.CorrectlyClassifiedCaptchaAccuracyTestCase.test_basic Coverage Results" MODIFIED="1587229054669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/accuracy_tests" />
