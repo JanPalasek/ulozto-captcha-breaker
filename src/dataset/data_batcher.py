@@ -19,7 +19,6 @@ class DataBatcher:
         inputs = inputs[indices]
         labels = labels[indices]
 
-        # TODO: shuffle
         for batch_idx in range(len(self._inputs) // self._batch_size):
             first_item_idx = batch_idx * self._batch_size
 

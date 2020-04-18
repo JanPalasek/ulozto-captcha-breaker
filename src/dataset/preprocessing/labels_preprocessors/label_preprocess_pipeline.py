@@ -1,6 +1,6 @@
 import numpy as np
 
-from dataset.preprocessing.labels_preprocessors.string_encoder import StringEncoder
+from src.dataset.preprocessing.labels_preprocessors.string_encoder import StringEncoder
 
 
 class LabelPreprocessPipeline:

@@ -15,33 +15,23 @@ from dataset.preprocessing.labels_preprocessors.label_preprocess_pipeline import
 from dataset.preprocessing.labels_preprocessors.one_char_encoder import OneCharEncoder
 from dataset.preprocessing.labels_preprocessors.string_encoder import StringEncoder
 
+import sklearn.model_selection
+
 
 class CaptchaNetwork:
-    def __init__(self, image_shape, classes: int, time_steps: int, args):
+    def __init__(self, image_shape, classes: int, args):
         self._classes = classes
-        self._time_steps = time_steps
         input_shape = (image_shape[0], image_shape[1], 1)
 
         input = tf.keras.layers.Input(shape=input_shape)
 
         layer = input
         layer = tf.keras.layers.Convolution2D(
-            filters=32, kernel_size=5, strides=3, padding="same", use_bias=False,
+            filters=32, kernel_size=7, strides=2, padding="same", use_bias=False,
             kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
-
-        layer = tf.keras.layers.Convolution2D(
-            filters=32, kernel_size=5, strides=3, padding="same", use_bias=False,
-            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
-        layer = tf.keras.layers.BatchNormalization()(layer)
-        layer = tf.keras.layers.ReLU()(layer)
-
-        layer = tf.keras.layers.Convolution2D(
-            filters=32, kernel_size=5, strides=3, padding="same", use_bias=False,
-            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
-        layer = tf.keras.layers.BatchNormalization()(layer)
-        layer = tf.keras.layers.ReLU()(layer)
+        layer = tf.keras.layers.MaxPooling2D(strides=2)(layer)
 
         layer = tf.keras.layers.Convolution2D(
             filters=32, kernel_size=3, strides=1, padding="same", use_bias=False,
@@ -49,10 +39,44 @@ class CaptchaNetwork:
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
 
-        layer = tf.keras.layers.Flatten()(layer)
+        layer = tf.keras.layers.Convolution2D(
+            filters=32, kernel_size=3, strides=2, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+        layer = tf.keras.layers.BatchNormalization()(layer)
+        layer = tf.keras.layers.ReLU()(layer)
 
-        layer = tf.keras.layers.Dense(units=256, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
-        layer = tf.keras.layers.Dropout(0.5)(layer)
+        layer = tf.keras.layers.Convolution2D(
+            filters=64, kernel_size=3, strides=1, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+        layer = tf.keras.layers.BatchNormalization()(layer)
+        layer = tf.keras.layers.ReLU()(layer)
+
+        layer = tf.keras.layers.Convolution2D(
+            filters=64, kernel_size=3, strides=2, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+        layer = tf.keras.layers.BatchNormalization()(layer)
+        layer = tf.keras.layers.ReLU()(layer)
+
+        layer = tf.keras.layers.Convolution2D(
+            filters=128, kernel_size=3, strides=1, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+        layer = tf.keras.layers.BatchNormalization()(layer)
+        layer = tf.keras.layers.ReLU()(layer)
+
+        layer = tf.keras.layers.Convolution2D(
+            filters=128, kernel_size=3, strides=2, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+        layer = tf.keras.layers.BatchNormalization()(layer)
+        layer = tf.keras.layers.ReLU()(layer)
+
+        layer = tf.keras.layers.GlobalAveragePooling2D()(layer)
+
+        # # reshape into (batch, letters_count, rest)
+        target_shape = (4, layer.shape[1] // 4)
+        layer = tf.keras.layers.Reshape(target_shape=target_shape)(layer)
+
+        # layer = tf.keras.layers.Dense(units=100, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+        # layer = tf.keras.layers.Dropout(0.5)(layer)
         output = tf.keras.layers.Dense(units=classes, activation="softmax")(layer)
 
         self._model = tf.keras.Model(inputs=input, outputs=output)
@@ -73,21 +97,24 @@ class CaptchaNetwork:
         }
         self._writer = tf.summary.create_file_writer(args.logdir, flush_millis=10 * 1000)
 
-    def train(self, data, args):
+        if args.weights_file is not None:
+            self._model.load_weights(args.weights_file)
+
+    def train(self, inputs, labels, args):
         image_preprocess_pipeline = ImagePreprocessorPipeline([
             NormalizeImagePreprocessor()
         ])
         label_preprocess_pipeline = LabelPreprocessPipeline(
-            # StringEncoder(available_chars="0123456789")
-            OneCharEncoder(available_chars="0123456789")
+            StringEncoder(available_chars="0123456789")
+            # OneCharEncoder(available_chars="0123456789")
         )
 
-        train = data["train"]
-        train_inputs, train_labels = image_preprocess_pipeline(train["data"]), label_preprocess_pipeline(train["labels"])
+        train_x, val_x, train_y, val_y = sklearn.model_selection.train_test_split(
+            inputs, labels, test_size=0.1, random_state=args.seed)
 
-        dev = data["dev"]
-        dev_inputs, dev_labels = image_preprocess_pipeline(dev["data"]), label_preprocess_pipeline(
-            dev["labels"])
+        train_inputs, train_labels = image_preprocess_pipeline(train_x), label_preprocess_pipeline(train_y)
+        dev_inputs, dev_labels = image_preprocess_pipeline(val_x), label_preprocess_pipeline(
+            val_y)
 
         for epoch in range(args.epochs):
             self._train_epoch(train_inputs, train_labels, args.batch_size)
@@ -102,8 +129,11 @@ class CaptchaNetwork:
             dev_correct_acc = self._validation_metrics["correct_accuracy"].result()
 
             print(
-                f"\rEpoch: {epoch + 1}, train-loss: {train_loss:.4f}, train-acc: {train_acc:.4f}, train-correct-dev: {train_correct_acc:.4f}, "
+                f"\rEpoch: {epoch + 1}, train-loss: {train_loss:.4f}, train-acc: {train_acc:.4f}, train-correct-acc: {train_correct_acc:.4f}, "
                 f"dev-loss: {dev_loss:.4f}, dev-acc: {dev_acc:.4f}, dev-correct-acc: {dev_correct_acc:.4f}", flush=True)
+
+            if (epoch + 1) % args.checkpoint_freq == 0:
+                self._model.save_weights(f"{args.logdir}/{epoch + 1}.h5")
 
     def _train_epoch(self, inputs, labels, batch_size):
         for i, (batch_inputs, batch_labels) in enumerate(DataBatcher(batch_size, inputs, labels).batches()):
@@ -124,11 +154,6 @@ class CaptchaNetwork:
         logits = self._model(batch_inputs, training=False)
         batch_labels = tf.squeeze(batch_labels)
         loss = tf.losses.sparse_categorical_crossentropy(batch_labels, logits)
-
-        # logits = tf.transpose(logits, [1, 0, 2])
-        # label_length = tf.fill([tf.shape(batch_labels)[0]], tf.shape(batch_labels)[1])
-        #
-        # decoded = tf.nn.ctc_greedy_decoder(logits, sequence_length=label_length, merge_repeated=False)
 
         tf.summary.experimental.set_step(self._optimizer.iterations)
         with self._writer.as_default():

@@ -4,9 +4,20 @@ import tensorflow as tf
 
 
 class CorrectlyClassifiedCaptchaAccuracy(tf.metrics.Metric):
+    """
+    Calculates how many captchas were correctly classified.
+    E.g.:
+    If target is "abcd" and we classified "abbd", then we didn't classify it correctly (we get 0).
+    If target is "abcd" and we classified "abcd", then we did classify it correctly (thus we get 1).
+
+    result() returns average of correctly classified labels.
+    """
     def __init__(self, name='correctly_classified', **kwargs):
         super(CorrectlyClassifiedCaptchaAccuracy, self).__init__(name=name, **kwargs)
+        # stores how many captchas were correctly classified completely
+        # e.g. if the target is "abcd" and network predicts
         self._correctly_classified = self.add_weight(name='tp', initializer='zeros')
+        self._counter = self.add_weight(name='c', initializer='zeros')
 
     def update_state(self, y_true, y_pred, sample_weight=None):
         if len(y_pred.shape) <= 2:
@@ -19,13 +30,17 @@ class CorrectlyClassifiedCaptchaAccuracy(tf.metrics.Metric):
 
         all_correct = tf.reduce_all(correct, axis=1)
         all_correct = tf.cast(all_correct, tf.dtypes.float32)
-        update = tf.reduce_mean(all_correct)
+        self._counter.assign_add(len(all_correct))
+        # tf.print(f"All correct: {len(all_correct)}", output_stream=sys.stdout)
+        # tf.print(f"Counter: {self._counter}", output_stream=sys.stdout)
+        update = tf.reduce_sum(all_correct)
 
         self._correctly_classified.assign_add(update)
 
     def result(self):
-        return self._correctly_classified
+        return self._correctly_classified / self._counter
 
     def reset_states(self):
         # The state of the metric will be reset at the start of each epoch.
         self._correctly_classified.assign(0.)
+        self._counter.assign(0)

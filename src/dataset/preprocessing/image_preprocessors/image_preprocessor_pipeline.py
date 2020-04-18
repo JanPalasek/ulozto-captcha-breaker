@@ -1,6 +1,6 @@
 import numpy as np
 
-from dataset.preprocessing.image_preprocessors.image_cut_preprocessor import ImageCutPreprocessor
+from src.dataset.preprocessing.image_preprocessors.image_cut_preprocessor import ImageCutPreprocessor
 
 
 class ImagePreprocessorPipeline:

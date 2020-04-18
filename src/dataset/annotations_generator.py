@@ -1,14 +1,17 @@
 import argparse
 import datetime
 import os
+import random
 import re
 
 import cv2
+import numpy as np
 
 
 class AnnotationsGenerator:
-    def __init__(self, dir_path: str):
+    def __init__(self, dir_path: str, test_ratio: float):
         self._dir_path = dir_path
+        self._test_ratio = test_ratio
 
     def get_annotations(self):
         for item in os.listdir(self._dir_path):
@@ -16,22 +19,22 @@ class AnnotationsGenerator:
 
             yield item_path, os.path.splitext(item)[0]
 
-    def save_annotations(self, path: str):
-        with open(path, "w") as file:
-            for image_path, label in self.get_annotations():
+    def save_annotations(self, train_path: str, test_path: str):
+        annotations = np.array(list(self.get_annotations()))
+        indices = list(range(len(annotations)))
+        random.shuffle(indices)
+
+        test_samples_count = int(len(indices) * self._test_ratio)
+        test_indices = indices[:test_samples_count]
+        train_indices = indices[test_samples_count:]
+
+        test_annotations = annotations[test_indices]
+        train_annotations = annotations[train_indices]
+
+        with open(test_path, "w") as file:
+            for image_path, label in test_annotations:
                 file.write(f"{image_path} {label}\n")
 
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument("--out_dir", default="../../out", type=str, help="Out dir")
-
-    args = parser.parse_args()
-
-    out_dir = os.path.abspath(args.out_dir)
-    data_dir = os.path.join(out_dir, "data")
-    annotations_dir = os.path.join(out_dir, "annotations.txt")
-
-    generator = AnnotationsGenerator(data_dir)
-    generator.save_annotations(annotations_dir)
+        with open(train_path, "w") as file:
+            for image_path, label in train_annotations:
+                file.write(f"{image_path} {label}\n")
