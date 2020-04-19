@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7684a401-ee60-413b-b2e5-d7db2fec9863" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/captcha_detection/captcha_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/captcha_detection/captcha_network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/captcha_detection/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/captcha_detection/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/captcha_generation/simple_captcha_generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/captcha_generation/simple_captcha_generate.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +172,7 @@
       <workItem from="1587071639563" duration="1104000" />
       <workItem from="1587073609100" duration="37497000" />
       <workItem from="1587206106406" duration="21116000" />
-      <workItem from="1587277561053" duration="4664000" />
+      <workItem from="1587277561053" duration="5371000" />
     </task>
     <servers />
   </component>
