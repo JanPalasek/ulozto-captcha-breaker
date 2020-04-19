@@ -1,9 +1,8 @@
 import sys
+sys.path.insert(0, "src")
 
 from dataset.preprocessing.image_preprocessors.image_preprocessor_pipeline import ImagePreprocessorPipeline
 from dataset.preprocessing.image_preprocessors.normalize_image_preprocessor import NormalizeImagePreprocessor
-
-sys.path.insert(0, "src")
 
 from dataset.preprocessing.labels_preprocessors.label_preprocess_pipeline import LabelPreprocessPipeline
 from dataset.preprocessing.labels_preprocessors.string_encoder import StringEncoder

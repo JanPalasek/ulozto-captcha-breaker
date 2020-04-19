@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7684a401-ee60-413b-b2e5-d7db2fec9863" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/captcha_detection/captcha_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/captcha_detection/captcha_network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/captcha_detection/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/captcha_detection/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/captcha_detection/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/captcha_detection/train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/captcha_generation/simple_captcha_generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/captcha_generation/simple_captcha_generate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataset/annotations_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataset/annotations_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataset/captcha_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataset/captcha_dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/prototype/captchas_generate.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/prototype/captchas_generate.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +173,7 @@
       <workItem from="1587071639563" duration="1104000" />
       <workItem from="1587073609100" duration="37497000" />
       <workItem from="1587206106406" duration="21116000" />
-      <workItem from="1587277561053" duration="13194000" />
+      <workItem from="1587277561053" duration="13913000" />
     </task>
     <servers />
   </component>
@@ -187,10 +181,14 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="518" y="345" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587282065142">
+    <state x="518" y="345" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587290996266">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="518" y="345" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1587282065142" />
+    <state x="518" y="345" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1587290996266" />
+    <state x="691" y="354" width="594" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587291020526">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="691" y="354" width="594" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1587291020526" />
     <state x="1170" y="43" width="586" height="1037" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587138024519">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -207,22 +205,22 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="653" y="387" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1587240340099" />
-    <state width="1853" height="367" key="GridCell.Tab.0.bottom" timestamp="1587290568636">
+    <state width="1853" height="367" key="GridCell.Tab.0.bottom" timestamp="1587291064762">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="367" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587290568636" />
-    <state width="1853" height="367" key="GridCell.Tab.0.center" timestamp="1587290568635">
+    <state width="1853" height="367" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587291064762" />
+    <state width="1853" height="367" key="GridCell.Tab.0.center" timestamp="1587291064761">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="367" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587290568635" />
-    <state width="1853" height="367" key="GridCell.Tab.0.left" timestamp="1587290568635">
+    <state width="1853" height="367" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587291064761" />
+    <state width="1853" height="367" key="GridCell.Tab.0.left" timestamp="1587291064761">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="367" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587290568635" />
-    <state width="1853" height="367" key="GridCell.Tab.0.right" timestamp="1587290568635">
+    <state width="1853" height="367" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587291064761" />
+    <state width="1853" height="367" key="GridCell.Tab.0.right" timestamp="1587291064761">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="367" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587290568635" />
+    <state width="1853" height="367" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587291064761" />
     <state width="1853" height="342" key="GridCell.Tab.1.bottom" timestamp="1587287532310">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -315,7 +313,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/captcha_generation/simple_captcha_generate.py</url>
-          <line>32</line>
+          <line>31</line>
           <option name="timeStamp" value="143" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

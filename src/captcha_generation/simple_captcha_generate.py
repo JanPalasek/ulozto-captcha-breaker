@@ -1,12 +1,10 @@
+import sys
+sys.path.insert(0, "src")
+
 import argparse
 import itertools
 import os
 import random
-
-import sys
-import uuid
-
-sys.path.insert(0, "src")
 
 from captcha.image import ImageCaptcha
 from dataset.annotations_generator import AnnotationsGenerator
