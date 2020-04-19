@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7684a401-ee60-413b-b2e5-d7db2fec9863" name="Default Changelist" comment="" />
+    <list default="true" id="7684a401-ee60-413b-b2e5-d7db2fec9863" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/captcha_detection/captcha_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/captcha_detection/captcha_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/captcha_detection/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/captcha_detection/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/captcha_generation/simple_captcha_generate.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/captcha_generation/simple_captcha_generate.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,16 +43,17 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/captcha_detection" />
       <recent name="$PROJECT_DIR$/src/dataset/preprocessing/image_preprocessors" />
       <recent name="$PROJECT_DIR$/src/dataset/preprocessing/labels_preprocessor" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/captcha_detection" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.train">
+  <component name="RunManager" selected="Python.test">
     <configuration name="annotations_generator" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ulozto-captcha-solver" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -92,6 +98,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ulozto-captcha-solver" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/captcha_detection/test.py" />
+      <option name="PARAMETERS" value="--weights_file=&quot;src/captcha_detection/model.h5&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="train" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ulozto-captcha-solver" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -118,11 +146,13 @@
       <item itemvalue="Python.train" />
       <item itemvalue="Python.simple_captcha_generate" />
       <item itemvalue="Python.annotations_generator" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.train" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.simple_captcha_generate" />
+        <item itemvalue="Python.train" />
         <item itemvalue="Python.annotations_generator" />
       </list>
     </recent_temporary>
@@ -144,7 +174,8 @@
       <workItem from="1587044537375" duration="22210000" />
       <workItem from="1587071639563" duration="1104000" />
       <workItem from="1587073609100" duration="37497000" />
-      <workItem from="1587206106406" duration="19972000" />
+      <workItem from="1587206106406" duration="21116000" />
+      <workItem from="1587277561053" duration="4664000" />
     </task>
     <servers />
   </component>
@@ -152,10 +183,10 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="328" y="287" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587240489346">
+    <state x="518" y="345" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587282065142">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="328" y="287" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1587240489346" />
+    <state x="518" y="345" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1587282065142" />
     <state x="1170" y="43" width="586" height="1037" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587138024519">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -172,38 +203,38 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="653" y="387" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1587240340099" />
-    <state width="1853" height="367" key="GridCell.Tab.0.bottom" timestamp="1587245351261">
+    <state width="1853" height="367" key="GridCell.Tab.0.bottom" timestamp="1587282250859">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="367" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587245351261" />
-    <state width="1853" height="367" key="GridCell.Tab.0.center" timestamp="1587245351260">
+    <state width="1853" height="367" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587282250858" />
+    <state width="1853" height="367" key="GridCell.Tab.0.center" timestamp="1587282250857">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="367" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587245351260" />
-    <state width="1853" height="367" key="GridCell.Tab.0.left" timestamp="1587245351259">
+    <state width="1853" height="367" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587282250857" />
+    <state width="1853" height="367" key="GridCell.Tab.0.left" timestamp="1587282250857">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="367" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587245351259" />
-    <state width="1853" height="367" key="GridCell.Tab.0.right" timestamp="1587245351260">
+    <state width="1853" height="367" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587282250857" />
+    <state width="1853" height="367" key="GridCell.Tab.0.right" timestamp="1587282250858">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="367" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587245351260" />
-    <state width="1853" height="342" key="GridCell.Tab.1.bottom" timestamp="1587244315796">
+    <state width="1853" height="367" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587282250858" />
+    <state width="1853" height="342" key="GridCell.Tab.1.bottom" timestamp="1587281082810">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="342" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587244315796" />
-    <state width="1853" height="342" key="GridCell.Tab.1.center" timestamp="1587244315796">
+    <state width="1853" height="342" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587281082810" />
+    <state width="1853" height="342" key="GridCell.Tab.1.center" timestamp="1587281082810">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="342" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587244315796" />
-    <state width="1853" height="342" key="GridCell.Tab.1.left" timestamp="1587244315796">
+    <state width="1853" height="342" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587281082810" />
+    <state width="1853" height="342" key="GridCell.Tab.1.left" timestamp="1587281082809">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="342" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587244315796" />
-    <state width="1853" height="342" key="GridCell.Tab.1.right" timestamp="1587244315796">
+    <state width="1853" height="342" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587281082809" />
+    <state width="1853" height="342" key="GridCell.Tab.1.right" timestamp="1587281082810">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1853" height="342" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587244315796" />
+    <state width="1853" height="342" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587281082810" />
     <state x="307" y="202" key="SettingsEditor" timestamp="1587233125788">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -216,6 +247,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="506" y="256" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1587032661543" />
+    <state x="683" y="293" width="653" height="518" key="find.popup" timestamp="1587246033762">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="683" y="293" width="653" height="518" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1587246033762" />
     <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1587244889269">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -265,14 +300,24 @@
           <option name="timeStamp" value="115" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/dataset/preprocessing/image_preprocessors/image_preprocessor_pipeline.py</url>
-          <line>18</line>
-          <option name="timeStamp" value="125" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/dataset/annotations_generator.py</url>
           <line>22</line>
           <option name="timeStamp" value="127" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/captcha_detection/captcha_network.py</url>
+          <line>207</line>
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/captcha_detection/test.py</url>
+          <line>65</line>
+          <option name="timeStamp" value="134" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/captcha_detection/test.py</url>
+          <line>51</line>
+          <option name="timeStamp" value="135" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -284,10 +329,6 @@
         <watch expression="os.path.splitext(item)[0]" language="Python" />
       </configuration>
       <configuration name="PythonConfigurationType">
-        <watch expression="layer.shape" language="Python" />
-        <watch expression="tf.argmax(logits, axis=1)" language="Python" />
-        <watch expression="y_pred == batch_labels" language="Python" />
-        <watch expression="tf.reduce_all(labels == tf.argmax(logits, 1))" language="Python" />
         <watch expression="&quot;,&quot;.join((&quot;{}={}&quot;.format(re.sub(&quot;(.)[^_]*_?&quot;, r&quot;\1&quot;, key), value) for key, value in sorted(vars(args).items())))" language="Python" />
       </configuration>
     </watches-manager>
@@ -295,10 +336,11 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ulozto_captcha_solver$Unittests_for_correctly_classified_captcha_accuracy_tests_CorrectlyClassifiedCaptchaAccuracyTestCase_test_succeed_fail.coverage" NAME="Unittests for correctly_classified_captcha_accuracy_tests.CorrectlyClassifiedCaptchaAccuracyTestCase.test_succeed_fail Coverage Results" MODIFIED="1587231576734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/accuracy_tests" />
     <SUITE FILE_PATH="coverage/ulozto_captcha_solver$train.coverage" NAME="train Coverage Results" MODIFIED="1587245340906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ulozto_captcha_solver$simple_captcha_generate.coverage" NAME="simple_captcha_generate Coverage Results" MODIFIED="1587244315774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ulozto_captcha_solver$simple_captcha_generate.coverage" NAME="simple_captcha_generate Coverage Results" MODIFIED="1587281968851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ulozto_captcha_solver$Unittests_for_correctly_classified_captcha_accuracy_tests_CorrectlyClassifiedCaptchaAccuracyTestCase.coverage" NAME="Unittests for correctly_classified_captcha_accuracy_tests.CorrectlyClassifiedCaptchaAccuracyTestCase Coverage Results" MODIFIED="1587231721664" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/accuracy_tests" />
     <SUITE FILE_PATH="coverage/ulozto_captcha_solver$Unittests_for_correctly_classified_captcha_accuracy_tests_CorrectlyClassifiedCaptchaAccuracyTestCase_test_basic.coverage" NAME="Unittests for correctly_classified_captcha_accuracy_tests.CorrectlyClassifiedCaptchaAccuracyTestCase.test_basic Coverage Results" MODIFIED="1587229054669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/accuracy_tests" />
     <SUITE FILE_PATH="coverage/ulozto_captcha_solver$annotations_generator.coverage" NAME="annotations_generator Coverage Results" MODIFIED="1587243952056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/dataset" />
+    <SUITE FILE_PATH="coverage/ulozto_captcha_solver$test.coverage" NAME="test Coverage Results" MODIFIED="1587282066444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ulozto_captcha_solver$Unittests_for_correctly_classified_captcha_accuracy_tests_CorrectlyClassifiedCaptchaAccuracyTestCase_test_fail.coverage" NAME="Unittests for correctly_classified_captcha_accuracy_tests.CorrectlyClassifiedCaptchaAccuracyTestCase.test_fail Coverage Results" MODIFIED="1587229203371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/accuracy_tests" />
     <SUITE FILE_PATH="coverage/ulozto_captcha_solver$main.coverage" NAME="main Coverage Results" MODIFIED="1587231931560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>

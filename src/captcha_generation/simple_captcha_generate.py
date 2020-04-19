@@ -11,7 +11,7 @@ from dataset.annotations_generator import AnnotationsGenerator
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--test_split", default=0.1, type=float)
+    parser.add_argument("--test_split", default=0.3, type=float)
     args = parser.parse_args()
 
     out_dir = os.path.abspath("out")

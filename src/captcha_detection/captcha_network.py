@@ -106,7 +106,6 @@ class CaptchaNetwork:
         ])
         label_preprocess_pipeline = LabelPreprocessPipeline(
             StringEncoder(available_chars="0123456789")
-            # OneCharEncoder(available_chars="0123456789")
         )
 
         train_x, val_x, train_y, val_y = sklearn.model_selection.train_test_split(
@@ -186,3 +185,33 @@ class CaptchaNetwork:
                 else:
                     metric.update_state(y_true=labels, y_pred=logits)
                 tf.summary.scalar("train/{}".format(name), metric.result())
+
+    def predict(self, inputs):
+        image_preprocess_pipeline = ImagePreprocessorPipeline([
+            NormalizeImagePreprocessor()
+        ])
+        inputs = image_preprocess_pipeline(inputs)
+
+        return self._predict(inputs).numpy()
+
+    @tf.function
+    def _predict(self, inputs):
+        y_pred = self._predict_proba(inputs)
+
+        if len(y_pred.shape) <= 2:
+            y_pred = tf.expand_dims(y_pred, axis=1)
+        y_pred = tf.argmax(y_pred, axis=2)
+
+        return y_pred
+
+    def predict_proba(self, inputs):
+        image_preprocess_pipeline = ImagePreprocessorPipeline([
+            NormalizeImagePreprocessor()
+        ])
+        inputs = image_preprocess_pipeline(inputs)
+
+        return self._predict_proba(inputs).numpy()
+
+    @tf.function
+    def _predict_proba(self, inputs):
+        return self._model(inputs)
