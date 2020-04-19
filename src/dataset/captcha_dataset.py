@@ -2,17 +2,18 @@ import cv2
 
 
 class CaptchaDataset:
-    def __init__(self, annotations_path: str):
+    def __init__(self, annotations_path: str, classes: int):
         self._annotations_path = annotations_path
+        self._classes = classes
 
         self._data = self._get_items()
 
     def get_image_shape(self):
         return self._data[0][0].shape
 
-    def get_classes(self):
-        # TODO
-        return 10
+    @property
+    def classes(self):
+        return self._classes
 
     def _get_items(self):
         result = []

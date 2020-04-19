@@ -19,7 +19,10 @@ import sklearn.model_selection
 
 
 class CaptchaNetwork:
-    def __init__(self, image_shape, classes: int, args):
+    def __init__(self, image_shape, classes: int, image_preprocess_pipeline, label_preprocess_pipeline, args):
+        self._image_preprocess_pipeline = image_preprocess_pipeline
+        self._label_preprocess_pipeline = label_preprocess_pipeline
+
         self._classes = classes
         input_shape = (image_shape[0], image_shape[1], 1)
 
@@ -72,7 +75,7 @@ class CaptchaNetwork:
         layer = tf.keras.layers.GlobalAveragePooling2D()(layer)
 
         # # reshape into (batch, letters_count, rest)
-        target_shape = (4, layer.shape[1] // 4)
+        target_shape = (args.captcha_length, layer.shape[1] // args.captcha_length)
         layer = tf.keras.layers.Reshape(target_shape=target_shape)(layer)
 
         # layer = tf.keras.layers.Dense(units=100, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
@@ -101,18 +104,11 @@ class CaptchaNetwork:
             self._model.load_weights(args.weights_file)
 
     def train(self, inputs, labels, args):
-        image_preprocess_pipeline = ImagePreprocessorPipeline([
-            NormalizeImagePreprocessor()
-        ])
-        label_preprocess_pipeline = LabelPreprocessPipeline(
-            StringEncoder(available_chars="0123456789")
-        )
-
         train_x, val_x, train_y, val_y = sklearn.model_selection.train_test_split(
             inputs, labels, test_size=0.1, random_state=args.seed)
 
-        train_inputs, train_labels = image_preprocess_pipeline(train_x), label_preprocess_pipeline(train_y)
-        dev_inputs, dev_labels = image_preprocess_pipeline(val_x), label_preprocess_pipeline(
+        train_inputs, train_labels = self._image_preprocess_pipeline(train_x), self._label_preprocess_pipeline(train_y)
+        dev_inputs, dev_labels = self._image_preprocess_pipeline(val_x), self._label_preprocess_pipeline(
             val_y)
 
         for epoch in range(args.epochs):
@@ -187,10 +183,7 @@ class CaptchaNetwork:
                 tf.summary.scalar("train/{}".format(name), metric.result())
 
     def predict(self, inputs):
-        image_preprocess_pipeline = ImagePreprocessorPipeline([
-            NormalizeImagePreprocessor()
-        ])
-        inputs = image_preprocess_pipeline(inputs)
+        inputs = self._image_preprocess_pipeline(inputs)
 
         return self._predict(inputs).numpy()
 
@@ -205,10 +198,7 @@ class CaptchaNetwork:
         return y_pred
 
     def predict_proba(self, inputs):
-        image_preprocess_pipeline = ImagePreprocessorPipeline([
-            NormalizeImagePreprocessor()
-        ])
-        inputs = image_preprocess_pipeline(inputs)
+        inputs = self._image_preprocess_pipeline(inputs)
 
         return self._predict_proba(inputs).numpy()
 
