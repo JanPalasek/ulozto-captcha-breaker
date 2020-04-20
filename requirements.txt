@@ -9,7 +9,9 @@ certifi==2020.4.5.1
 chardet==3.0.4
 decorator==4.4.2
 defusedxml==0.6.0
+docutils==0.16
 entrypoints==0.3
+Faker==4.0.3
 gast==0.2.2
 google-auth==1.14.0
 google-auth-oauthlib==0.4.1
@@ -33,6 +35,9 @@ jupyter-console==6.1.0
 jupyter-core==4.6.3
 Keras-Applications==1.0.8
 Keras-Preprocessing==1.1.0
+Kivy==1.11.1
+Kivy-Garden==0.1.4
+lxml==4.5.0
 Markdown==3.2.1
 MarkupSafe==1.1.1
 mistune==0.8.4
@@ -75,6 +80,7 @@ tensorflow-estimator==2.1.0
 termcolor==1.1.0
 terminado==0.8.3
 testpath==0.4.4
+text-unidecode==1.3
 tornado==6.0.4
 traitlets==4.3.3
 urllib3==1.25.8

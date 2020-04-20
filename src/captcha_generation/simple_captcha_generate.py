@@ -41,12 +41,13 @@ if __name__ == "__main__":
     parser.add_argument("--captcha_length", default=4, type=int)
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", type=str)
     parser.add_argument("--generation_type", type=str, help="Either 'randomly' or 'systematically'")
+    parser.add_argument("--out_dir", type=str, default="out")
 
     args = parser.parse_args()
 
     random.seed(args.seed)
 
-    out_dir = os.path.abspath("out")
+    out_dir = os.path.abspath(args.out_dir)
     data_dir = os.path.join(out_dir, "data")
 
     if not os.path.exists(data_dir):

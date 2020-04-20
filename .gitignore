@@ -134,5 +134,10 @@ dmypy.json
 # pytype static type analyzer
 .pytype/
 
+# idea
+*.iws
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+
 out/
 venv/
