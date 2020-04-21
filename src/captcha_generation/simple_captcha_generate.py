@@ -42,6 +42,7 @@ if __name__ == "__main__":
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", type=str)
     parser.add_argument("--generation_type", type=str, help="Either 'randomly' or 'systematically'")
     parser.add_argument("--out_dir", type=str, default="out")
+    parser.add_argument("--generate", action="store_true")
 
     args = parser.parse_args()
 
@@ -59,8 +60,9 @@ if __name__ == "__main__":
     fake = Faker()
     Faker.seed(args.seed)
 
-    for captcha_code in generate_randomly(args.available_chars, args.dataset_size, args.captcha_length):
-        image.write(f'{captcha_code}', f'{data_dir}/{captcha_code}_{fake.uuid4()}.png')
+    if args.generate:
+        for captcha_code in generate_randomly(args.available_chars, args.dataset_size, args.captcha_length):
+            image.write(f'{captcha_code}', f'{data_dir}/{captcha_code}_{fake.uuid4()}.png')
 
     train_annotations_path = os.path.join(out_dir, "annotations-train.txt")
     test_annotations_path = os.path.join(out_dir, "annotations-test.txt")
