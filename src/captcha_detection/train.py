@@ -1,5 +1,10 @@
 import sys
+
 sys.path.insert(0, "src")
+
+from dataset.preprocessing.image_preprocessors.convert_to_grayscale_preprocessor import ConvertToGrayscalePreprocessor
+from dataset.preprocessing.image_preprocessors.resize_preprocessor import ResizePreprocessor
+from utils.file_writer import FileWriter
 
 from dataset.preprocessing.image_preprocessors.image_preprocessor_pipeline import ImagePreprocessorPipeline
 from dataset.preprocessing.image_preprocessors.normalize_image_preprocessor import NormalizeImagePreprocessor
@@ -31,8 +36,13 @@ if __name__ == "__main__":
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyz", type=str, help="Labels")
     parser.add_argument("--checkpoint_freq", default=4, type=int, help="How frequently will be model saved."
                                                                            "E.g. if 4, then every fourth epoch will be stored.")
+    parser.add_argument("--transformed_input_width", default=None, type=int)
+    parser.add_argument("--transformed_input_height", default=None, type=int)
 
     args = parser.parse_args()
+
+    assert ((args.transformed_input_width is None and args.transformed_input_height is None) or
+            args.transformed_input_width is not None and args.transformed_input_height is not None)
 
     # Fix random seeds and number of threads
     np.random.seed(args.seed)
@@ -41,7 +51,8 @@ if __name__ == "__main__":
 
     out_dir = os.path.abspath(args.out_dir)
     data_dir = os.path.join(out_dir, "data")
-    annotations_path = os.path.join(out_dir, "annotations-train.txt")
+    train_annotations_path = os.path.join(out_dir, "annotations-train.txt")
+    val_annotations_path = os.path.join(out_dir, "annotations-train.txt")
 
     args.logdir = os.path.join(out_dir, "logs", "{}-{}-{}".format(
         os.path.basename(__file__),
@@ -49,21 +60,31 @@ if __name__ == "__main__":
         ",".join(("{}={}".format(re.sub("(.)[^_]*_?", r"\1", key), value) for key, value in sorted(vars(args).items())))
     ))
 
-    dataset = CaptchaDataset(annotations_path, len(args.available_chars))
-    image_shape = dataset.get_image_shape()
-    inputs, labels = dataset.get_data()
+    train_dataset = CaptchaDataset(train_annotations_path, len(args.available_chars))
+    val_dataset = CaptchaDataset(val_annotations_path, len(args.available_chars))
+
+    if args.transformed_input_width is not None and args.transformed_input_height is not None:
+        input_shape = (args.transformed_input_height, args.transformed_input_width)
+    else:
+        image_shape = train_dataset.get_image_shape()
+        input_shape = (image_shape[0], image_shape[1])
 
     image_preprocess_pipeline = ImagePreprocessorPipeline([
+        ConvertToGrayscalePreprocessor(),
+        ResizePreprocessor(input_shape[0], input_shape[1]),
         NormalizeImagePreprocessor()
     ])
     label_preprocess_pipeline = LabelPreprocessPipeline(
         StringEncoder(available_chars=args.available_chars)
     )
 
-    network = CaptchaNetwork(image_shape=image_shape,
-                             classes=dataset.classes,
+    train_x, train_y = train_dataset.get_data()
+    val_x, val_y = val_dataset.get_data()
+
+    network = CaptchaNetwork(image_shape=input_shape,
+                             classes=train_dataset.classes,
                              image_preprocess_pipeline=image_preprocess_pipeline,
                              label_preprocess_pipeline=label_preprocess_pipeline,
                              args=args)
 
-    network.train(inputs, labels, args)
+    network.train(train_x, train_y, val_x, val_y, args)

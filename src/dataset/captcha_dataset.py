@@ -22,7 +22,7 @@ class CaptchaDataset:
                 image_path, image_label = line.split()
                 image_label = list(image_label)
 
-                image = cv2.imread(image_path, 0)
+                image = cv2.imread(image_path)
                 result.append((image, image_label))
 
         return result

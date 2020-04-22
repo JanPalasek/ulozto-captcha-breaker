@@ -103,10 +103,7 @@ class CaptchaNetwork:
         if args.weights_file is not None:
             self._model.load_weights(args.weights_file)
 
-    def train(self, inputs, labels, args):
-        train_x, val_x, train_y, val_y = sklearn.model_selection.train_test_split(
-            inputs, labels, test_size=0.1, random_state=args.seed)
-
+    def train(self, train_x, train_y, val_x, val_y, args):
         train_inputs, train_labels = self._image_preprocess_pipeline(train_x), self._label_preprocess_pipeline(train_y)
         dev_inputs, dev_labels = self._image_preprocess_pipeline(val_x), self._label_preprocess_pipeline(
             val_y)
@@ -129,6 +126,9 @@ class CaptchaNetwork:
 
             if (epoch + 1) % args.checkpoint_freq == 0:
                 self._model.save_weights(f"{args.logdir}/{epoch + 1}.h5")
+
+    def save_model(self, out_path):
+        tf.saved_model.save(self._model, out_path)
 
     def _train_epoch(self, inputs, labels, batch_size):
         for i, (batch_inputs, batch_labels) in enumerate(DataBatcher(batch_size, inputs, labels).batches()):

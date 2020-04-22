@@ -1,6 +1,10 @@
 import sys
 sys.path.insert(0, "src")
 
+from dataset.preprocessing.image_preprocessors.convert_to_grayscale_preprocessor import ConvertToGrayscalePreprocessor
+from dataset.preprocessing.image_preprocessors.resize_preprocessor import ResizePreprocessor
+from utils.file_writer import FileWriter
+
 from dataset.preprocessing.image_preprocessors.image_preprocessor_pipeline import ImagePreprocessorPipeline
 from dataset.preprocessing.image_preprocessors.normalize_image_preprocessor import NormalizeImagePreprocessor
 
@@ -28,6 +32,8 @@ if __name__ == "__main__":
     parser.add_argument("--captcha_length", default=4, type=int)
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyz", type=str)
     parser.add_argument("--seed", default=42, type=int)
+    parser.add_argument("--transformed_input_width", default=None, type=int)
+    parser.add_argument("--transformed_input_height", default=None, type=int)
 
     args = parser.parse_args()
 
@@ -47,30 +53,43 @@ if __name__ == "__main__":
     ))
 
     dataset = CaptchaDataset(annotations_path, len(args.available_chars))
-    image_shape = dataset.get_image_shape()
     inputs, labels = dataset.get_data()
 
+    if args.transformed_input_width is not None and args.transformed_input_height is not None:
+        input_shape = (args.transformed_input_height, args.transformed_input_width)
+    else:
+        input_shape = dataset.get_image_shape()
+
     image_preprocess_pipeline = ImagePreprocessorPipeline([
+        ConvertToGrayscalePreprocessor(),
+        ResizePreprocessor(input_shape),
         NormalizeImagePreprocessor()
-    ])
+    ], out_writer=FileWriter(args.logdir))
     label_preprocess_pipeline = LabelPreprocessPipeline(
         StringEncoder(available_chars=args.available_chars)
     )
 
-    network = CaptchaNetwork(image_shape=image_shape,
+    network = CaptchaNetwork(image_shape=input_shape,
                              classes=dataset.classes,
                              image_preprocess_pipeline=image_preprocess_pipeline,
                              label_preprocess_pipeline=label_preprocess_pipeline,
                              args=args)
 
-
     labels = label_preprocess_pipeline(labels)
 
     pred_labels = network.predict(inputs)
+
     correct = labels == pred_labels
 
     all_correct = tf.reduce_all(correct, axis=1)
     all_correct = tf.cast(all_correct, tf.dtypes.float32)
     acc = tf.reduce_mean(all_correct)
+
+    dec = StringEncoder(available_chars=args.available_chars)
+    with open(os.path.join(out_dir, "out_test.csv"), "w") as file:
+        for i in range(len(pred_labels)):
+            decoded_label = dec.decode(labels[i])
+            decoded_pred_label = dec.decode(pred_labels[i])
+            file.write(f"{all_correct[i]};{decoded_label};{decoded_pred_label}\n")
 
     print(acc)

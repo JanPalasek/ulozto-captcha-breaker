@@ -7,7 +7,6 @@ import os
 import random
 
 from captcha.image import ImageCaptcha
-from dataset.annotations_generator import AnnotationsGenerator
 
 from faker import Faker
 
@@ -35,14 +34,12 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--test_split", default=0.1, type=float)
     parser.add_argument("--dataset_size", default=10000, type=int)
     parser.add_argument("--seed", default=42, type=int)
     parser.add_argument("--captcha_length", default=4, type=int)
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", type=str)
-    parser.add_argument("--generation_type", type=str, help="Either 'randomly' or 'systematically'")
+    parser.add_argument("--generation_type", type=str, help="Either 'randomly' or 'systematically'", default="randomly")
     parser.add_argument("--out_dir", type=str, default="out")
-    parser.add_argument("--generate", action="store_true")
 
     args = parser.parse_args()
 
@@ -60,12 +57,8 @@ if __name__ == "__main__":
     fake = Faker()
     Faker.seed(args.seed)
 
-    if args.generate:
-        for captcha_code in generate_randomly(args.available_chars, args.dataset_size, args.captcha_length):
-            image.write(f'{captcha_code}', f'{data_dir}/{captcha_code}_{fake.uuid4()}.png')
-
-    train_annotations_path = os.path.join(out_dir, "annotations-train.txt")
-    test_annotations_path = os.path.join(out_dir, "annotations-test.txt")
-
-    generator = AnnotationsGenerator(data_dir, args.test_split, True)
-    generator.save_annotations(train_annotations_path, test_annotations_path)
+    generated_captchas = (generate_systematically(args.available_chars, args.dataset_size, args.captcha_length)
+                 if args.generation_type == "systematically"
+                 else generate_randomly(args.available_chars, args.dataset_size, args.captcha_length))
+    for captcha_code in generated_captchas:
+        image.write(f'{captcha_code}', f'{data_dir}/{captcha_code}_{fake.uuid4()}.png')

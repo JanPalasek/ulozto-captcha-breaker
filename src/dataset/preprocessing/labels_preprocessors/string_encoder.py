@@ -17,6 +17,15 @@ class StringEncoder:
             result.append(self.encode_char(char))
         return np.array(result)
 
+    def decode_char(self, char_idx: int):
+        return self._available_chars[char_idx]
+
+    def decode(self, li):
+        result = []
+        for char in li:
+            result.append(self.decode_char(char))
+        return "".join(result)
+
     # def encode(self, input):
     #     result = []
     #     for x in input:
