@@ -1,15 +1,11 @@
-import argparse
-import datetime
 import os
 import random
-import re
-
-import cv2
 import numpy as np
 
 
 class AnnotationsGenerator:
-    def __init__(self, dir_path: str, annotations_out_dir: str, validation_ratio: float, test_ratio: float, ignore_case: bool):
+    def __init__(self, dir_path: str, annotations_out_dir: str,
+                 validation_ratio: float, test_ratio: float, ignore_case: bool):
         self._dir_path = dir_path
         self._validation_ratio = validation_ratio
         self._test_ratio = test_ratio
@@ -48,14 +44,16 @@ class AnnotationsGenerator:
         with open(annotations_path, "w") as annotations_file:
             with open(test_annotations_path, "w") as file:
                 for image_path, label in test_annotations:
-                    annotation = f"{image_path} {label.lower()}\n"
+                    result_label = label.lower() if self._ignore_case else label
+                    annotation = f"{image_path} {result_label}\n"
 
                     file.write(annotation)
                     annotations_file.write(annotation)
 
             with open(val_annotations_path, "w") as file:
                 for image_path, label in validation_annotations:
-                    annotation = f"{image_path} {label.lower()}\n"
+                    result_label = label.lower() if self._ignore_case else label
+                    annotation = f"{image_path} {result_label}\n"
 
                     file.write(annotation)
                     annotations_file.write(annotation)
