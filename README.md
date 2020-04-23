@@ -21,7 +21,7 @@ Note that it takes **grayscale images** on the input. RGB images therefore have 
 # output will have shape (batch_size, 4, 26)
 output = model(input).numpy()
 # now get labels
-labels_indices = np.argmax(labels, axis=2)
+labels_indices = np.argmax(output, axis=2)
 decoder = StringEncoder("abcdefghijklmnopqrstuvwxyz")
 labels = [decoder.decode(x) for x in labels_indices]
 ```
