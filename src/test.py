@@ -3,7 +3,6 @@ sys.path.insert(0, "src")
 
 from dataset.preprocessing.image_preprocessors.convert_to_grayscale_preprocessor import ConvertToGrayscalePreprocessor
 from dataset.preprocessing.image_preprocessors.resize_preprocessor import ResizePreprocessor
-from utils.file_writer import FileWriter
 
 from dataset.preprocessing.image_preprocessors.image_preprocessor_pipeline import ImagePreprocessorPipeline
 from dataset.preprocessing.image_preprocessors.normalize_image_preprocessor import NormalizeImagePreprocessor
@@ -26,7 +25,7 @@ import tensorflow as tf
 if __name__ == "__main__":
     # Parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("--weights_file", default="src/captcha_detection/model.h5", type=str, help="Path to file that contains pre-trained weights.")
+    parser.add_argument("--weights_file", default="model.h5", type=str, help="Path to file that contains pre-trained weights.")
     parser.add_argument("--batch_size", default=32, type=int, help="Batch size.")
     parser.add_argument("--out_dir", default="out", type=str, help="Out dir")
     parser.add_argument("--captcha_length", default=4, type=int)

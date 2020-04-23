@@ -3,19 +3,9 @@ import os
 import numpy as np
 import tensorflow as tf
 from tensorflow_core.python.keras.utils.vis_utils import plot_model
-from tensorflow.keras import backend as K
 
 from accuracy.correctly_classified_captcha_accuracy import CorrectlyClassifiedCaptchaAccuracy
-from dataset.captcha_dataset import CaptchaDataset
 from dataset.data_batcher import DataBatcher
-from dataset.preprocessing.image_preprocessors.image_cut_preprocessor import ImageCutPreprocessor
-from dataset.preprocessing.image_preprocessors.image_preprocessor_pipeline import ImagePreprocessorPipeline
-from dataset.preprocessing.image_preprocessors.normalize_image_preprocessor import NormalizeImagePreprocessor
-from dataset.preprocessing.labels_preprocessors.label_preprocess_pipeline import LabelPreprocessPipeline
-from dataset.preprocessing.labels_preprocessors.one_char_encoder import OneCharEncoder
-from dataset.preprocessing.labels_preprocessors.string_encoder import StringEncoder
-
-import sklearn.model_selection
 
 
 class CaptchaNetwork:
