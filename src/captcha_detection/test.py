@@ -62,7 +62,7 @@ if __name__ == "__main__":
 
     image_preprocess_pipeline = ImagePreprocessorPipeline([
         ConvertToGrayscalePreprocessor(),
-        ResizePreprocessor(input_shape),
+        ResizePreprocessor(input_shape[0], input_shape[1]),
         NormalizeImagePreprocessor()
     ], out_writer=FileWriter(args.logdir))
     label_preprocess_pipeline = LabelPreprocessPipeline(
