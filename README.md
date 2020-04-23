@@ -1,5 +1,5 @@
 # ulozto-captcha-breaker
-Deep learning model using Tensorflow that breaks ulozto captcha codes.
+Deep learning model using Tensorflow that breaks ulozto captcha codes. Algorithm used will be described in a standalone document.
 
 ## Model specifications
 - Input shape: (batch_size, height, width, 1), where height = 70, width = 175
