@@ -2,8 +2,8 @@
 Deep learning model using Tensorflow that breaks ulozto captcha codes.
 
 ## Model specifications
-Input shape: (batch_size, height, width, 1), where height = 70, width = 175
-Output shape: (batch_size, number_of_letters, number_of_classes), where number_of_letters = 4 and number_of_classes = 26
+- Input shape: (batch_size, height, width, 1), where height = 70, width = 175
+- Output shape: (batch_size, number_of_letters, number_of_classes), where number_of_letters = 4 and number_of_classes = 26
 
 Note that it takes **grayscale images** on the input. RGB images therefore have to be converted.
 
