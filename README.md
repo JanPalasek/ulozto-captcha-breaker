@@ -13,8 +13,10 @@ Note that it takes **grayscale images** on the input. RGB images therefore have 
 
 ### Steps
 1. Go to latest release and download binary files
-2. Load model in your project using ```model = tf.keras.models.load_model(PATH_TO_MODEL_DIR)```.
-3. Copy StringEncoder to your project (useful for decoding)
+2. Load model in your project using ```model = tf.keras.models.load_model(PATH_TO_MODEL_DIR)```
+  - PATH_TO_MODEL_DIR is path to directory containing the neural network pretrained model
+  - it can be found inside the release binary files
+3. Copy StringEncoder class from to your project (useful for decoding)
 4. Predict using following code
 ```python
 # input of shape (batch_size, 70, 175, 1)
@@ -25,3 +27,4 @@ labels_indices = np.argmax(output, axis=2)
 decoder = StringEncoder("abcdefghijklmnopqrstuvwxyz")
 labels = [decoder.decode(x) for x in labels_indices]
 ```
+- *tf* is alias for tensorflow package, *np* for numpy
