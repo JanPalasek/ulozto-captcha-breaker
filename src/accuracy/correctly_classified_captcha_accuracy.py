@@ -2,6 +2,25 @@ import sys
 
 import tensorflow as tf
 
+def all_correct_acc(y_true: tf.Tensor, y_pred):
+    if y_true.shape[0] is None and y_true.shape[1] is None and y_true.shape[2] is None:
+        return tf.convert_to_tensor(0)
+
+    # cast to int64 so we can compare it
+    y_true = tf.cast(y_true, tf.dtypes.int64)
+
+    if len(y_pred.shape) <= 2:
+        y_pred = tf.expand_dims(y_pred, axis=1)
+    if len(y_true.shape) <= 1:
+        y_true = tf.expand_dims(y_true, axis=1)
+    y_pred = tf.argmax(y_pred, axis=2)
+    correct = y_true == y_pred
+    # tf.print(f"Pred shape: {y_true.shape}", output_stream=sys.stdout)
+
+    all_correct = tf.reduce_all(correct, axis=1)
+    all_correct = tf.cast(all_correct, tf.dtypes.float32)
+
+    return tf.reduce_mean(all_correct)
 
 class CorrectlyClassifiedCaptchaAccuracy(tf.metrics.Metric):
     """
