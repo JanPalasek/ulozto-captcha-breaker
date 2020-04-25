@@ -140,6 +140,11 @@ class CaptchaNetwork:
         dev_inputs, dev_labels = self._image_preprocess_pipeline(val_x), self._label_preprocess_pipeline(
             val_y)
 
+        del train_x
+        del train_y
+        del val_x
+        del val_y
+
         for epoch in range(args.epochs):
             self._train_epoch(train_inputs, train_labels, args.batch_size)
             self._evaluate_epoch(dev_inputs, dev_labels, args.batch_size)
