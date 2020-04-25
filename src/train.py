@@ -27,7 +27,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--weights_file", default=None, type=str, help="Path to file that contains pre-trained weights.")
     parser.add_argument("--pretrained_model", default=None, type=str)
-    parser.add_argument("--freeze_layers", default=44, type=int, help="How many layers should be frozen for the training."
+    parser.add_argument("--freeze_layers", default=0, type=int, help="How many layers should be frozen for the training."
                                                                      "Counts from the beginning.")
     parser.add_argument("--remove_layers",
                         action="store_true")
@@ -39,11 +39,10 @@ if __name__ == "__main__":
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyz", type=str, help="Labels")
     parser.add_argument("--transformed_img_width", default=None, type=int)
     parser.add_argument("--transformed_img_height", default=None, type=int)
-    parser.add_argument("--l2", default=0.01, type=float)
+    parser.add_argument("--l2", default=0.0001, type=float)
 
     args = parser.parse_args()
 
-    assert args.weights_file is None or args.pretrained_model is None, "Cannot load pretrained model and weights file at the same time"
     assert ((args.transformed_img_width is None and args.transformed_img_height is None) or
             args.transformed_img_width is not None and args.transformed_img_height is not None)
 
