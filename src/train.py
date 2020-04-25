@@ -26,20 +26,24 @@ if __name__ == "__main__":
     # Parse arguments
     parser = argparse.ArgumentParser()
     parser.add_argument("--weights_file", default=None, type=str, help="Path to file that contains pre-trained weights.")
+    parser.add_argument("--pretrained_model", default=None, type=str)
+    parser.add_argument("--freeze_layers", default=44, type=int, help="How many layers should be frozen for the training."
+                                                                     "Counts from the beginning.")
+    parser.add_argument("--remove_layers",
+                        action="store_true")
     parser.add_argument("--batch_size", default=32, type=int, help="Batch size.")
     parser.add_argument("--epochs", default=1500, type=int, help="Number of epochs.")
     parser.add_argument("--out_dir", default="out", type=str, help="Out dir")
     parser.add_argument("--seed", default=42, type=int)
     parser.add_argument("--captcha_length", default=4, type=int)
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyz", type=str, help="Labels")
-    parser.add_argument("--checkpoint_freq", default=4, type=int, help="How frequently will be model saved."
-                                                                           "E.g. if 4, then every fourth epoch will be stored.")
     parser.add_argument("--transformed_img_width", default=None, type=int)
     parser.add_argument("--transformed_img_height", default=None, type=int)
     parser.add_argument("--l2", default=0.01, type=float)
 
     args = parser.parse_args()
 
+    assert args.weights_file is None or args.pretrained_model is None, "Cannot load pretrained model and weights file at the same time"
     assert ((args.transformed_img_width is None and args.transformed_img_height is None) or
             args.transformed_img_width is not None and args.transformed_img_height is not None)
 
