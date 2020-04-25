@@ -30,13 +30,13 @@ if __name__ == "__main__":
     parser.add_argument("--epochs", default=1500, type=int, help="Number of epochs.")
     parser.add_argument("--out_dir", default="out", type=str, help="Out dir")
     parser.add_argument("--seed", default=42, type=int)
-    parser.add_argument("--val_split", default=0.1, type=float)
     parser.add_argument("--captcha_length", default=4, type=int)
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyz", type=str, help="Labels")
     parser.add_argument("--checkpoint_freq", default=4, type=int, help="How frequently will be model saved."
                                                                            "E.g. if 4, then every fourth epoch will be stored.")
     parser.add_argument("--transformed_img_width", default=None, type=int)
     parser.add_argument("--transformed_img_height", default=None, type=int)
+    parser.add_argument("--l2", default=0.01, type=float)
 
     args = parser.parse_args()
 

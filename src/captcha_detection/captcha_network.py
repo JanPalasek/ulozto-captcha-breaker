@@ -21,44 +21,68 @@ class CaptchaNetwork:
         layer = input
         layer = tf.keras.layers.Convolution2D(
             filters=32, kernel_size=7, strides=2, padding="same", use_bias=False,
-            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+            kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
         layer = tf.keras.layers.MaxPooling2D(strides=2)(layer)
 
         layer = tf.keras.layers.Convolution2D(
             filters=32, kernel_size=3, strides=1, padding="same", use_bias=False,
-            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+            kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
+        layer = tf.keras.layers.BatchNormalization()(layer)
+        layer = tf.keras.layers.ReLU()(layer)
+
+        layer = tf.keras.layers.Convolution2D(
+            filters=32, kernel_size=3, strides=1, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
 
         layer = tf.keras.layers.Convolution2D(
             filters=32, kernel_size=3, strides=2, padding="same", use_bias=False,
-            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+            kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
 
         layer = tf.keras.layers.Convolution2D(
             filters=64, kernel_size=3, strides=1, padding="same", use_bias=False,
-            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+            kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
+        layer = tf.keras.layers.BatchNormalization()(layer)
+        layer = tf.keras.layers.ReLU()(layer)
+
+        layer = tf.keras.layers.Convolution2D(
+            filters=64, kernel_size=3, strides=1, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
 
         layer = tf.keras.layers.Convolution2D(
             filters=64, kernel_size=3, strides=2, padding="same", use_bias=False,
-            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+            kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
 
         layer = tf.keras.layers.Convolution2D(
             filters=128, kernel_size=3, strides=1, padding="same", use_bias=False,
-            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+            kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
+        layer = tf.keras.layers.BatchNormalization()(layer)
+        layer = tf.keras.layers.ReLU()(layer)
+
+        layer = tf.keras.layers.Convolution2D(
+            filters=128, kernel_size=3, strides=1, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
 
         layer = tf.keras.layers.Convolution2D(
             filters=128, kernel_size=3, strides=2, padding="same", use_bias=False,
-            kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
+            kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
+        layer = tf.keras.layers.BatchNormalization()(layer)
+        layer = tf.keras.layers.ReLU()(layer)
+
+        layer = tf.keras.layers.Convolution2D(
+            filters=256, kernel_size=3, strides=1, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
         layer = tf.keras.layers.BatchNormalization()(layer)
         layer = tf.keras.layers.ReLU()(layer)
 
@@ -73,6 +97,7 @@ class CaptchaNetwork:
         output = tf.keras.layers.Dense(units=classes, activation="softmax")(layer)
 
         self._model = tf.keras.Model(inputs=input, outputs=output)
+        self._loss = tf.keras.losses.SparseCategoricalCrossentropy()
         self._optimizer = tf.keras.optimizers.Adam()
 
         self._model.summary()
@@ -138,7 +163,7 @@ class CaptchaNetwork:
     def _evaluate_batch(self, batch_inputs, batch_labels):
         logits = self._model(batch_inputs, training=False)
         batch_labels = tf.squeeze(batch_labels)
-        loss = tf.losses.sparse_categorical_crossentropy(batch_labels, logits)
+        loss = self._loss(batch_labels, logits)
 
         tf.summary.experimental.set_step(self._optimizer.iterations)
         with self._writer.as_default():
@@ -156,7 +181,7 @@ class CaptchaNetwork:
             logits = self._model(inputs, training=True)
             labels = tf.squeeze(labels)
 
-            loss = tf.losses.sparse_categorical_crossentropy(labels, logits)
+            loss = self._loss(labels, logits)
             loss = tf.reduce_mean(loss)
 
         gradients = tape.gradient(target=loss, sources=self._model.trainable_variables)

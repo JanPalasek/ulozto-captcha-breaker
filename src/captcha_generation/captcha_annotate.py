@@ -11,8 +11,8 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--test_split", default=0.15, type=float)
-    parser.add_argument("--val_split", default=0.15, type=float)
+    parser.add_argument("--test_split", default=0.1, type=float)
+    parser.add_argument("--val_split", default=0.1, type=float)
     parser.add_argument("--seed", default=42, type=int)
     parser.add_argument("--captcha_length", default=4, type=int)
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", type=str)
