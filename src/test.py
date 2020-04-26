@@ -25,14 +25,23 @@ import tensorflow as tf
 if __name__ == "__main__":
     # Parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("--weights_file", default="model.h5", type=str, help="Path to file that contains pre-trained weights.")
+    parser.add_argument("--weights_file", default="src/captcha_detection/model.h5", type=str,
+                        help="Path to file that contains pre-trained weights.")
+    parser.add_argument("--pretrained_model", default=None, type=str)
+    parser.add_argument("--freeze_layers", default=0, type=int,
+                        help="How many layers should be frozen for the training."
+                             "Counts from the beginning.")
+    parser.add_argument("--remove_layers",
+                        action="store_true")
     parser.add_argument("--batch_size", default=32, type=int, help="Batch size.")
+    parser.add_argument("--epochs", default=1500, type=int, help="Number of epochs.")
     parser.add_argument("--out_dir", default="out", type=str, help="Out dir")
-    parser.add_argument("--captcha_length", default=4, type=int)
-    parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyz", type=str)
     parser.add_argument("--seed", default=42, type=int)
-    parser.add_argument("--transformed_input_width", default=None, type=int)
-    parser.add_argument("--transformed_input_height", default=None, type=int)
+    parser.add_argument("--captcha_length", default=4, type=int)
+    parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyz", type=str, help="Labels")
+    parser.add_argument("--transformed_img_width", default=None, type=int)
+    parser.add_argument("--transformed_img_height", default=None, type=int)
+    parser.add_argument("--l2", default=0.0001, type=float)
 
     args = parser.parse_args()
 
@@ -54,10 +63,11 @@ if __name__ == "__main__":
     dataset = CaptchaDataset(annotations_path, len(args.available_chars))
     inputs, labels = dataset.get_data()
 
-    if args.transformed_input_width is not None and args.transformed_input_height is not None:
-        input_shape = (args.transformed_input_height, args.transformed_input_width)
+    if args.transformed_img_width is not None and args.transformed_img_height is not None:
+        input_shape = (args.transformed_img_height, args.transformed_img_width)
     else:
-        input_shape = dataset.get_image_shape()
+        image_shape = dataset.get_image_shape()
+        input_shape = (image_shape[0], image_shape[1])
 
     image_preprocess_pipeline = ImagePreprocessorPipeline([
         ConvertToGrayscalePreprocessor(),
@@ -73,6 +83,8 @@ if __name__ == "__main__":
                              image_preprocess_pipeline=image_preprocess_pipeline,
                              label_preprocess_pipeline=label_preprocess_pipeline,
                              args=args)
+
+    network.save_model(os.path.join(out_dir, "model"))
 
     labels = label_preprocess_pipeline(labels)
 
