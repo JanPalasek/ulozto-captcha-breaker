@@ -43,6 +43,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    args.save_model_path = None
+
     assert ((args.transformed_img_width is None and args.transformed_img_height is None) or
             args.transformed_img_width is not None and args.transformed_img_height is not None)
 
