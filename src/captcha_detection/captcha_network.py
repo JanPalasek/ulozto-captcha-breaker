@@ -9,9 +9,6 @@ from accuracy.correctly_classified_captcha_accuracy import all_correct_acc
 
 class CaptchaNetwork:
     def __init__(self, image_shape, classes: int, image_preprocess_pipeline, label_preprocess_pipeline, args):
-        # if there are no pretrained models, freeze layers must be zero (implication)
-        assert not (args.weights_file is None and args.pretrained_model is None) or args.freeze_layers > 0, "Freeze layers can be set only on pretrained models"
-        assert not (args.weights_file is None and args.pretrained_model is None) or args.remove_layers, "Layers can be removed this way only on pretrained models"
         assert args.weights_file is None or args.pretrained_model is None, "Cannot load pretrained model and weights file at the same time"
 
         self._image_preprocess_pipeline = image_preprocess_pipeline
@@ -35,12 +32,14 @@ class CaptchaNetwork:
             layer = tf.keras.layers.MaxPooling2D(strides=2)(layer)
 
             layer = self._create_residual_block(layer, filters=32, l2=args.l2)
+            layer = self._create_residual_block(layer, filters=32, l2=args.l2)
 
             layer = tf.keras.layers.BatchNormalization()(layer)
             layer = tf.keras.layers.ReLU()(layer)
             layer = tf.keras.layers.Convolution2D(
                 filters=64, kernel_size=3, strides=2, padding="same", use_bias=False,
                 kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
+            layer = self._create_residual_block(layer, filters=64, l2=args.l2)
             layer = self._create_residual_block(layer, filters=64, l2=args.l2)
 
             layer = tf.keras.layers.BatchNormalization()(layer)
@@ -49,12 +48,14 @@ class CaptchaNetwork:
                 filters=128, kernel_size=3, strides=2, padding="same", use_bias=False,
                 kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
             layer = self._create_residual_block(layer, filters=128, l2=args.l2)
+            layer = self._create_residual_block(layer, filters=128, l2=args.l2)
 
             layer = tf.keras.layers.BatchNormalization()(layer)
             layer = tf.keras.layers.ReLU()(layer)
             layer = tf.keras.layers.Convolution2D(
                 filters=256, kernel_size=3, strides=2, padding="same", use_bias=False,
                 kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
+            layer = self._create_residual_block(layer, filters=256, l2=args.l2)
             layer = self._create_residual_block(layer, filters=256, l2=args.l2)
 
             layer = tf.keras.layers.GlobalAveragePooling2D()(layer)
