@@ -69,12 +69,12 @@ class CaptchaNetwork:
 
             self._model = tf.keras.Model(inputs=input, outputs=output)
         else:
-            self._model = tf.saved_model.load(args.pretrained_model)
+            self._model = tf.keras.models.load_model(args.pretrained_model)
 
         if args.weights_file is not None:
             self._model.load_weights(args.weights_file)
 
-        print(f"Total layers: {len(self._model.layers)}")
+        # print(f"Total layers: {len(self._model.layers)}")
         if args.remove_layers:
             # remove classification header and add new one
             input = self._model.layers[0].input
