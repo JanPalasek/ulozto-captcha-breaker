@@ -141,9 +141,13 @@ class CaptchaNetwork:
 
         self._loss = tf.keras.losses.SparseCategoricalCrossentropy()
         self._optimizer = tf.keras.optimizers.Adam()
+
+        metrics = [tf.keras.metrics.sparse_categorical_accuracy]
+        if not args.save_model_path:
+            metrics.append(all_correct_acc)
         self._model.compile(optimizer=tf.keras.optimizers.Adam(),
                             loss=tf.keras.losses.SparseCategoricalCrossentropy(),
-                            metrics=[tf.keras.metrics.sparse_categorical_accuracy, all_correct_acc])
+                            metrics=metrics)
 
         self._model.summary()
         plot_model(self._model, to_file=os.path.join(args.out_dir, "model.png"), show_shapes=True)
@@ -153,6 +157,9 @@ class CaptchaNetwork:
         checkpoint_path = os.path.join(args.logdir, 'cp-{epoch:02d}.h5')
         self._check_callback = tf.keras.callbacks.ModelCheckpoint(
             checkpoint_path, save_weights_only=True)
+
+        if args.save_model_path:
+            self.save_model(args.save_model_path)
 
     def train(self, train_x, train_y, val_x, val_y, args):
         train_inputs, train_labels = self._image_preprocess_pipeline(train_x), self._label_preprocess_pipeline(train_y)

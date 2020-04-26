@@ -2,6 +2,7 @@ import sys
 
 import tensorflow as tf
 
+
 def all_correct_acc(y_true: tf.Tensor, y_pred):
     if y_true.shape[0] is None and y_true.shape[1] is None and y_true.shape[2] is None:
         return tf.convert_to_tensor(0)

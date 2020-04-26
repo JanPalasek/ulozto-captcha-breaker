@@ -59,6 +59,7 @@ if __name__ == "__main__":
         datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S"),
         ",".join(("{}={}".format(re.sub("(.)[^_]*_?", r"\1", key), value) for key, value in sorted(vars(args).items())))
     ))
+    args.save_model_path = os.path.join(out_dir, "model")
 
     dataset = CaptchaDataset(annotations_path, len(args.available_chars))
     inputs, labels = dataset.get_data()
@@ -83,8 +84,6 @@ if __name__ == "__main__":
                              image_preprocess_pipeline=image_preprocess_pipeline,
                              label_preprocess_pipeline=label_preprocess_pipeline,
                              args=args)
-
-    network.save_model(os.path.join(out_dir, "model"))
 
     labels = label_preprocess_pipeline(labels)
 
