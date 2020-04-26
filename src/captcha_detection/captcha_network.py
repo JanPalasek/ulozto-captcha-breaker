@@ -34,79 +34,28 @@ class CaptchaNetwork:
             layer = tf.keras.layers.ReLU()(layer)
             layer = tf.keras.layers.MaxPooling2D(strides=2)(layer)
 
-            prev_layer = layer
-            layer = tf.keras.layers.BatchNormalization()(layer)
-            layer = tf.keras.layers.ReLU()(layer)
-            layer = tf.keras.layers.Convolution2D(
-                filters=32, kernel_size=3, strides=1, padding="same", use_bias=False,
-                kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
-
-            layer = tf.keras.layers.BatchNormalization()(layer)
-            layer = tf.keras.layers.ReLU()(layer)
-            layer = tf.keras.layers.Convolution2D(
-                filters=32, kernel_size=3, strides=1, padding="same", use_bias=False,
-                kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
-            layer = tf.keras.layers.Add()([prev_layer, layer])
+            layer = self._create_residual_block(layer, filters=32, l2=args.l2)
 
             layer = tf.keras.layers.BatchNormalization()(layer)
             layer = tf.keras.layers.ReLU()(layer)
             layer = tf.keras.layers.Convolution2D(
                 filters=64, kernel_size=3, strides=2, padding="same", use_bias=False,
                 kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
-
-            prev_layer = layer
-            layer = tf.keras.layers.BatchNormalization()(layer)
-            layer = tf.keras.layers.ReLU()(layer)
-            layer = tf.keras.layers.Convolution2D(
-                filters=64, kernel_size=3, strides=1, padding="same", use_bias=False,
-                kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
-
-            layer = tf.keras.layers.BatchNormalization()(layer)
-            layer = tf.keras.layers.ReLU()(layer)
-            layer = tf.keras.layers.Convolution2D(
-                filters=64, kernel_size=3, strides=1, padding="same", use_bias=False,
-                kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
-            layer = tf.keras.layers.Add()([prev_layer, layer])
+            layer = self._create_residual_block(layer, filters=64, l2=args.l2)
 
             layer = tf.keras.layers.BatchNormalization()(layer)
             layer = tf.keras.layers.ReLU()(layer)
             layer = tf.keras.layers.Convolution2D(
                 filters=128, kernel_size=3, strides=2, padding="same", use_bias=False,
                 kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
-
-            prev_layer = layer
-            layer = tf.keras.layers.BatchNormalization()(layer)
-            layer = tf.keras.layers.ReLU()(layer)
-            layer = tf.keras.layers.Convolution2D(
-                filters=128, kernel_size=3, strides=1, padding="same", use_bias=False,
-                kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
-
-            layer = tf.keras.layers.BatchNormalization()(layer)
-            layer = tf.keras.layers.ReLU()(layer)
-            layer = tf.keras.layers.Convolution2D(
-                filters=128, kernel_size=3, strides=1, padding="same", use_bias=False,
-                kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
-            layer = tf.keras.layers.Add()([prev_layer, layer])
+            layer = self._create_residual_block(layer, filters=128, l2=args.l2)
 
             layer = tf.keras.layers.BatchNormalization()(layer)
             layer = tf.keras.layers.ReLU()(layer)
             layer = tf.keras.layers.Convolution2D(
                 filters=256, kernel_size=3, strides=2, padding="same", use_bias=False,
                 kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
-
-            prev_layer = layer
-            layer = tf.keras.layers.BatchNormalization()(layer)
-            layer = tf.keras.layers.ReLU()(layer)
-            layer = tf.keras.layers.Convolution2D(
-                filters=256, kernel_size=3, strides=1, padding="same", use_bias=False,
-                kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
-
-            layer = tf.keras.layers.BatchNormalization()(layer)
-            layer = tf.keras.layers.ReLU()(layer)
-            layer = tf.keras.layers.Convolution2D(
-                filters=256, kernel_size=3, strides=1, padding="same", use_bias=False,
-                kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
-            layer = tf.keras.layers.Add()([prev_layer, layer])
+            layer = self._create_residual_block(layer, filters=256, l2=args.l2)
 
             layer = tf.keras.layers.GlobalAveragePooling2D()(layer)
 
@@ -161,6 +110,23 @@ class CaptchaNetwork:
         if args.save_model_path:
             self.save_model(args.save_model_path)
 
+    def _create_residual_block(self, layer: tf.keras.layers.Layer, filters: int, l2: float):
+        prev_layer = layer
+        layer = tf.keras.layers.BatchNormalization()(layer)
+        layer = tf.keras.layers.ReLU()(layer)
+        layer = tf.keras.layers.Convolution2D(
+            filters=filters, kernel_size=3, strides=1, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(l2))(layer)
+
+        layer = tf.keras.layers.BatchNormalization()(layer)
+        layer = tf.keras.layers.ReLU()(layer)
+        layer = tf.keras.layers.Convolution2D(
+            filters=filters, kernel_size=3, strides=1, padding="same", use_bias=False,
+            kernel_regularizer=tf.keras.regularizers.l2(l2))(layer)
+        layer = tf.keras.layers.Add()([prev_layer, layer])
+
+        return layer
+    
     def train(self, train_x, train_y, val_x, val_y, args):
         train_inputs, train_labels = self._image_preprocess_pipeline(train_x), self._label_preprocess_pipeline(train_y)
         dev_inputs, dev_labels = self._image_preprocess_pipeline(val_x), self._label_preprocess_pipeline(
