@@ -9,7 +9,7 @@ Note that it takes **grayscale images** on the input. RGB images therefore have 
 
 ## How to use pretrained model in your project
 ### Prerequisities
-*numpy* and *tensorflow* package to your virtual machine. Convertion to grayscale can be handled for example by *Pillow* and *scikit-image* packages.
+*numpy* and *tensorflow* package to your virtual machine.
 
 ### Steps
 1. Go to latest release and download binary files
