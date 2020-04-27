@@ -39,7 +39,7 @@ if __name__ == "__main__":
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyz", type=str, help="Labels")
     parser.add_argument("--transformed_img_width", default=None, type=int)
     parser.add_argument("--transformed_img_height", default=None, type=int)
-    parser.add_argument("--l2", default=0.0001, type=float)
+    parser.add_argument("--l2", default=0.00001, type=float)
 
     args = parser.parse_args()
 

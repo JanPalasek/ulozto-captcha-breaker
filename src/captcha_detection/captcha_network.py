@@ -74,7 +74,7 @@ class CaptchaNetwork:
         if args.weights_file is not None:
             self._model.load_weights(args.weights_file)
 
-        # print(f"Total layers: {len(self._model.layers)}")
+        print(f"Total layers: {len(self._model.layers)}")
         if args.remove_layers:
             # remove classification header and add new one
             input = self._model.layers[0].input
