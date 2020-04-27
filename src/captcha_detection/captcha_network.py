@@ -145,26 +145,11 @@ class CaptchaNetwork:
     def save_model(self, out_path):
         tf.saved_model.save(self._model, out_path)
 
-    def predict(self, inputs):
+    def predict(self, inputs, args):
         inputs = self._image_preprocess_pipeline(inputs)
 
-        return self._predict(inputs).numpy()
-
-    @tf.function
-    def _predict(self, inputs):
-        y_pred = self._predict_proba(inputs)
-
+        y_pred = self._model.predict(inputs, args.batch_size)
         if len(y_pred.shape) <= 2:
-            y_pred = tf.expand_dims(y_pred, axis=1)
-        y_pred = tf.argmax(y_pred, axis=2)
-
+            y_pred = np.expand_dims(y_pred, axis=1)
+        y_pred = np.argmax(y_pred, axis=2)
         return y_pred
-
-    def predict_proba(self, inputs):
-        inputs = self._image_preprocess_pipeline(inputs)
-
-        return self._predict_proba(inputs).numpy()
-
-    @tf.function
-    def _predict_proba(self, inputs):
-        return self._model(inputs)
