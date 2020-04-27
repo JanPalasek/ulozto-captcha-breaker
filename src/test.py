@@ -25,7 +25,7 @@ import tensorflow as tf
 if __name__ == "__main__":
     # Parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("--weights_file", default="src/captcha_detection/model.h5", type=str,
+    parser.add_argument("--weights_file", default=None, type=str,
                         help="Path to file that contains pre-trained weights.")
     parser.add_argument("--pretrained_model", default=None, type=str)
     parser.add_argument("--freeze_layers", default=0, type=int,
