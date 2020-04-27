@@ -87,7 +87,7 @@ if __name__ == "__main__":
 
     labels = label_preprocess_pipeline(labels)
 
-    pred_labels = network.predict(inputs)
+    pred_labels = network.predict(inputs, args)
 
     correct = labels == pred_labels
 

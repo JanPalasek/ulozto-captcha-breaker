@@ -10,8 +10,6 @@ from accuracy.correctly_classified_captcha_accuracy import all_correct_acc
 class CaptchaNetwork:
     def __init__(self, image_shape, classes: int, image_preprocess_pipeline, label_preprocess_pipeline, args):
         # if there are no pretrained models, freeze layers must be zero (implication)
-        assert not (args.weights_file is None and args.pretrained_model is None) or args.freeze_layers > 0, "Freeze layers can be set only on pretrained models"
-        assert not (args.weights_file is None and args.pretrained_model is None) or args.remove_layers, "Layers can be removed this way only on pretrained models"
         assert args.weights_file is None or args.pretrained_model is None, "Cannot load pretrained model and weights file at the same time"
 
         self._image_preprocess_pipeline = image_preprocess_pipeline
@@ -144,26 +142,11 @@ class CaptchaNetwork:
     def save_model(self, out_path):
         tf.saved_model.save(self._model, out_path)
 
-    def predict(self, inputs):
+    def predict(self, inputs, args):
         inputs = self._image_preprocess_pipeline(inputs)
 
-        return self._predict(inputs).numpy()
-
-    @tf.function
-    def _predict(self, inputs):
-        y_pred = self._predict_proba(inputs)
-
+        y_pred = self._model.predict(inputs, args.batch_size)
         if len(y_pred.shape) <= 2:
-            y_pred = tf.expand_dims(y_pred, axis=1)
-        y_pred = tf.argmax(y_pred, axis=2)
-
+            y_pred = np.expand_dims(y_pred, axis=1)
+        y_pred = np.argmax(y_pred, axis=2)
         return y_pred
-
-    def predict_proba(self, inputs):
-        inputs = self._image_preprocess_pipeline(inputs)
-
-        return self._predict_proba(inputs).numpy()
-
-    @tf.function
-    def _predict_proba(self, inputs):
-        return self._model(inputs)
