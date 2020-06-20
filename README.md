@@ -73,6 +73,7 @@ Note that it takes **grayscale images** on the input. RGB images therefore have 
 to captcha displayed in the image.
 
     E.g.
+    
     ![captcha image](docs/abfd_ba574f47-92d8-407d-9b34-d5f6fa8a74c3.png)
     
     This captcha image is expected to be named e.g. *ABFD.png*, *abfd.png* (if we don't care about case sensitivity)
@@ -81,13 +82,15 @@ to captcha displayed in the image.
     This project contains a way to generate captchas yourself using *captcha* Python package using script *src/captcha_generation/simple_captcha_generation.py*.
     You can run it in a following manner
     ```shell script
-    venv/bin/python3 src/captcha_generation/simple_captcha_generation.py --available_chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" --captcha_length=6 --dataset_size=10000
+    venv/bin/python3 src/captcha_generation/simple_captcha_generation.py --height=70 --width=175 --available_chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" --captcha_length=6 --dataset_size=10000
     ```
     
     Some of notable parameters are:
     - *available_chars* - list of characters that will be generated
     - *captcha_length* - how long generated captcha is going to be
     - *dataset_size* - how large dataset is going to be generated
+    - *height* - height of generated captcha
+    - *width* - width of generated captcha
 
 3. Generate *annotations* files using *src/captcha_annotate.py* script. You can call it for example
     ```shell script

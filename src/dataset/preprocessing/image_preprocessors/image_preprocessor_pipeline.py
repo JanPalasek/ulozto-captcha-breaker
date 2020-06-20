@@ -4,6 +4,10 @@ from utils.file_writer import FileWriter
 
 
 class ImagePreprocessorPipeline:
+    """
+    ImagePreprocessorPipeline specifies list of operations that are performed on each image in specified order. These
+    operations are invoked using *__call__*.
+    """
     def __init__(self, preprocessors, out_writer: FileWriter = None, debug_writer: FileWriter = None):
         self._preprocessors = preprocessors
 
@@ -11,6 +15,11 @@ class ImagePreprocessorPipeline:
         self._debug_writer = debug_writer
 
     def __call__(self, images):
+        """
+        Performs specified operations on images.
+        :param images: List of images.
+        :return: Modified list of images.
+        """
         result = []
         for image in images:
             modified_image = np.copy(image)

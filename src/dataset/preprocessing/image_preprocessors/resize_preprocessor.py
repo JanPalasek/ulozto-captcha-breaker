@@ -3,6 +3,9 @@ import numpy as np
 
 
 class ResizePreprocessor:
+    """
+    Resizes image to target width and height.
+    """
     def __init__(self, target_height, target_width):
         self._target_height = target_height
         self._target_width = target_width
