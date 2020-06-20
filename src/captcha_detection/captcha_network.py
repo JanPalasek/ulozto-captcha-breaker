@@ -151,7 +151,6 @@ class CaptchaNetwork:
         :param val_x: Numpy array with validation captcha images.
         :param val_y: Numpy array with validation captcha image labels (e.g. "abxz").
         :param args:
-        :return:
         """
         train_inputs, train_labels = self._image_preprocess_pipeline(train_x), self._label_preprocess_pipeline(train_y)
         dev_inputs, dev_labels = self._image_preprocess_pipeline(val_x), self._label_preprocess_pipeline(
@@ -170,6 +169,12 @@ class CaptchaNetwork:
         tf.saved_model.save(self._model, out_path)
 
     def predict(self, inputs, args):
+        """
+        Predicts labels from input images. Returns list of indices that denote characters.
+        :param inputs: List of captcha images.
+        :param args:
+        :return: List of indices that denote characters.
+        """
         inputs = self._image_preprocess_pipeline(inputs)
 
         y_pred = self._model.predict(inputs, args.batch_size)
