@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import sys
 sys.path.insert(0, "src")
 
@@ -40,6 +42,8 @@ if __name__ == "__main__":
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", type=str)
     parser.add_argument("--generation_type", type=str, help="Either 'randomly' or 'systematically'", default="randomly")
     parser.add_argument("--out_dir", type=str, default="out")
+    parser.add_argument("--width", type=int, default=175, help="Width of generated captcha code image.")
+    parser.add_argument("--height", type=int, default=70, help="Height of generated captcha code image.")
 
     args = parser.parse_args()
 
@@ -51,7 +55,7 @@ if __name__ == "__main__":
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
 
-    image = ImageCaptcha(width=175, height=70)
+    image = ImageCaptcha(width=args.width, height=args.height)
 
     # generate fake uuid4
     fake = Faker()

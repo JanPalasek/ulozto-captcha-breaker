@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import os
 
 import numpy as np
@@ -9,6 +11,17 @@ from accuracy.correctly_classified_captcha_accuracy import all_correct_acc
 
 class CaptchaNetwork:
     def __init__(self, image_shape, classes: int, image_preprocess_pipeline, label_preprocess_pipeline, args):
+        """
+        Initializes CaptchaNetwork instance.
+        :param image_shape: Shape of image.
+        :param classes: Number of classes that model recognizes. E.g. if we want it to detect abcdefghijklmnopqrstuvwxyz, then
+        classes must be number 28.
+        :param image_preprocess_pipeline: Specifies pipeline that is used before image is put as input to neural network.
+        :param label_preprocess_pipeline: Specifies pipeline that transforms output of neural network from internal indices
+        back into captcha characters.
+        :param args:
+        """
+
         assert args.weights_file is None or args.pretrained_model is None, "Cannot load pretrained model and weights file at the same time"
 
         self._image_preprocess_pipeline = image_preprocess_pipeline
@@ -60,8 +73,10 @@ class CaptchaNetwork:
 
             layer = tf.keras.layers.GlobalAveragePooling2D()(layer)
 
+            layer = tf.keras.layers.Dense(units=args.captcha_length * classes,
+                                          kernel_regularizer=tf.keras.regularizers.l2(args.l2))(layer)
             # # reshape into (batch, letters_count, rest)
-            target_shape = (args.captcha_length, layer.shape[1] // args.captcha_length)
+            target_shape = (args.captcha_length, classes)
             layer = tf.keras.layers.Reshape(target_shape=target_shape)(layer)
 
             # layer = tf.keras.layers.Dense(units=100, activation="relu", kernel_regularizer=tf.keras.regularizers.l2(0.01))(layer)
@@ -129,6 +144,15 @@ class CaptchaNetwork:
         return layer
     
     def train(self, train_x, train_y, val_x, val_y, args):
+        """
+        Train the model.
+        :param train_x: Numpy array with train captcha images.
+        :param train_y: Numpy array with train captcha image labels (e.g. "abxz").
+        :param val_x: Numpy array with validation captcha images.
+        :param val_y: Numpy array with validation captcha image labels (e.g. "abxz").
+        :param args:
+        :return:
+        """
         train_inputs, train_labels = self._image_preprocess_pipeline(train_x), self._label_preprocess_pipeline(train_y)
         dev_inputs, dev_labels = self._image_preprocess_pipeline(val_x), self._label_preprocess_pipeline(
             val_y)
