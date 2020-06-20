@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import sys
 sys.path.insert(0, "src")
 
@@ -13,8 +11,12 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--test_split", default=0.1, type=float)
-    parser.add_argument("--val_split", default=0.1, type=float)
+    parser.add_argument("--test_split", default=0.1, type=float, help="Specifies how large part of all data are used for "
+                                                                      "test. E.g. if 0.1, then 10% of all data are used "
+                                                                      "for test.")
+    parser.add_argument("--val_split", default=0.1, type=float, help="Specifies how large part of all data are used for "
+                                                                      "validation. E.g. if 0.1, then 10% of all data are used "
+                                                                      "for validation.")
     parser.add_argument("--seed", default=42, type=int)
     parser.add_argument("--out_dir", type=str, default="out")
     parser.add_argument("--case_sensitive", action="store_true", default=False, help="Boolean switch that is true when "

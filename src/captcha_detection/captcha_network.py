@@ -115,7 +115,7 @@ class CaptchaNetwork:
                             metrics=metrics)
 
         self._model.summary()
-        plot_model(self._model, to_file=os.path.join(args.out_dir, "model.png"), show_shapes=True)
+        # plot_model(self._model, to_file=os.path.join(args.out_dir, "model.png"), show_shapes=True)
 
         self._tb_callback = tf.keras.callbacks.TensorBoard(args.logdir, update_freq=1000, profile_batch=1)
         self._tb_callback.on_train_end = lambda *_: None
