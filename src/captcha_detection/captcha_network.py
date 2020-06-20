@@ -4,7 +4,7 @@ import os
 
 import numpy as np
 import tensorflow as tf
-from tensorflow_core.python.keras.utils.vis_utils import plot_model
+from tensorflow.python.keras.utils.vis_utils import plot_model
 
 from accuracy.correctly_classified_captcha_accuracy import all_correct_acc
 

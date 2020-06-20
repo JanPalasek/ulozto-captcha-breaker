@@ -19,7 +19,7 @@ class CaptchaDataset:
         result = []
         with open(self._annotations_path, "r") as file:
             for line in file:
-                image_path, image_label = line.split()
+                image_path, image_label = line.rsplit(maxsplit=1)
                 image_label = list(image_label)
 
                 image = cv2.imread(image_path)
