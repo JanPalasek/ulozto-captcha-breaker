@@ -82,7 +82,7 @@ to captcha displayed in the image.
     This project contains a way to generate captchas yourself using *captcha* Python package using script *src/captcha_generation/simple_captcha_generation.py*.
     You can run it in a following manner
     ```shell script
-    venv/bin/python3 src/captcha_generation/simple_captcha_generation.py --height=70 --width=175 --available_chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" --captcha_length=6 --dataset_size=10000
+    venv/bin/python3 src/captcha_generation/simple_captcha_generate.py --height=70 --width=175 --available_chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" --captcha_length=6 --dataset_size=10000
     ```
     
     Some of notable parameters are:
@@ -92,7 +92,7 @@ to captcha displayed in the image.
     - *height* - height of generated captcha
     - *width* - width of generated captcha
 
-3. Generate *annotations* files using *src/captcha_annotate.py* script. You can call it for example
+3. Generate *annotations* files using *src/captcha_generation/captcha_annotate.py* script. You can call it for example
     ```shell script
     venv/bin/python3 src/captcha_annotate.py --val_split=0.1 --test_split=0.1
     ```
