@@ -15,7 +15,7 @@ Packages
 - Input shape: (batch_size, height, width, 1), where height = 70, width = 175
 - Output shape: (batch_size, number_of_letters, number_of_classes), where number_of_letters = 4 and number_of_classes = 26
 
-Note that it takes **grayscale images** on the input. RGB images therefore have to be converted.
+Note that it takes **grayscale images** as the input. RGB images therefore have to be converted.
 
 ### Steps
 1. Go to latest release and download binary files
@@ -79,7 +79,7 @@ to captcha displayed in the image.
     This captcha image is expected to be named e.g. *ABFD.png*, *abfd.png* (if we don't care about case sensitivity)
     or e.g. *ABFD_{UUID4 CODE}.png* (to distinguish different images for same captcha letters).
     
-    This project contains a way to generate captchas yourself using *captcha* Python package using script *src/captcha_generation/simple_captcha_generation.py*.
+    This project contains a way to generate captchas yourself using *captcha* Python package using script *src/captcha_generation/simple_captcha_generate.py*.
     You can run it in a following manner
     ```shell script
     venv/bin/python3 src/captcha_generation/simple_captcha_generate.py --height=70 --width=175 --available_chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" --captcha_length=6 --dataset_size=10000
@@ -94,16 +94,20 @@ to captcha displayed in the image.
 
 3. Generate *annotations* files using *src/captcha_generation/captcha_annotate.py* script. You can call it for example
     ```shell script
-    venv/bin/python3 src/captcha_annotate.py --val_split=0.1 --test_split=0.1
+    venv/bin/python3 src/captcha_generation/captcha_annotate.py --val_split=0.1 --test_split=0.1 --case_sensitive
     ```
     This will shuffle and split data into train/validation/test according to following parameters:
     - *val_split* - how large part of data is going to be used for validation, e.g. 0.1 means 10%
     - *test_split* - how large part of data is going to be used for testing
+    - *case_sensitive* - switch denoting that labels that are created will be case sensitive
+        - if such parameter is not passed, then for example if *aBcD* is in the image (and image is named accordingly),
+        resulting label will be *abcd*
+        - if it is passed, resulting label will be *aBcD*
     
     This script will create *annotations.txt*, *annotations-train.txt*, *annotations-validation.txt* and *annotations-test.txt*.
 
 4. Run training script *src/train.py* for example like this:
     ```shell script
-    /venv/bin/python3 src/train.py --available_chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" --captcha_length=6 
+    venv/bin/python3 src/train.py --available_chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" --captcha_length=6 
     ```
    Training script notably logs models after each checkpoint into *logs/train.py-{START TIMESTAMP}-{parameters etc.}* directory.
