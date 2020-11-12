@@ -61,6 +61,10 @@ if __name__ == "__main__":
     ))
     args.save_model_path = os.path.join(out_dir, "model")
 
+    assert args.weights_file is not None or args.pretrained_model is not None, "Weights file or pretrained model must " \
+                                                                               "be passed in order to test " \
+                                                                               "it."
+
     dataset = CaptchaDataset(annotations_path, len(args.available_chars))
     inputs, labels = dataset.get_data()
 
@@ -102,4 +106,4 @@ if __name__ == "__main__":
             decoded_pred_label = dec.decode(pred_labels[i])
             file.write(f"{all_correct[i]};{decoded_label};{decoded_pred_label}\n")
 
-    print(acc)
+    print(f"Test acc: {acc:.2f}")

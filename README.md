@@ -9,7 +9,10 @@ Algorithm used will be described in a standalone document.
 ### Prerequisities
 Packages
 - *numpy~=1.18.3*
-- *tensorflow~=2.1.0*
+- *tflite_runtime~=2.5.0*
+
+You need to install Tensorflow Lite Runtime with the correct version depending on your operating system and instruction set. 
+It can be found here: https://www.tensorflow.org/lite/guide/python.
 
 ### Model specification
 - Input shape: (batch_size, height, width, 1), where height = 70, width = 175
@@ -19,9 +22,12 @@ Note that it takes **grayscale images** as the input. RGB images therefore have 
 
 ### Steps
 1. Go to latest release and download binary files
-2. Load model in your project using ```model = tf.keras.models.load_model(PATH_TO_MODEL_DIR)```
-    - PATH_TO_MODEL_DIR is path to directory containing the neural network pretrained model
-    - it can be found inside the release binary files
+2. Instantiate the tflite interpreter. For that you're going to need TFLite model. You can find it in the release binary files.
+    - PATH_TO_TFLITE_MODEL is path to directory containing the neural network pretrained model
+    ```python
+   import tflite_runtime.interpreter as tflite
+   interpreter = tflite.Interpreter(model_path=PATH_TO_TFLITE_MODEL)
+   ```
 
 3. Normalize image to 0..1 interval. If it already is, skip this step.
     ```python
@@ -33,28 +39,35 @@ Note that it takes **grayscale images** as the input. RGB images therefore have 
     r, g, b = img[:, :, 0], img[:, :, 1], img[:, :, 2]
     input = 0.299 * r + 0.587 * g + 0.114 * b
     
-    # input has now shape (70, 175)
+    # input has nowof  shape (70, 175)
     # we modify dimensions to match model's input
     input = np.expand_dims(input, 0)
     input = np.expand_dims(input, -1)
-    
     # input is now of shape (batch_size, 70, 175, 1)
     # output will have shape (batch_size, 4, 26)
-    output = model.predict(input)
+   
+    interpreter.allocate_tensors()
+    input_details = interpreter.get_input_details()
+    output_details = interpreter.get_output_details()
+    interpreter.set_tensor(input_details[0]['index'], input)
+    interpreter.invoke()
+
+    # predict and get the output
+    output = interpreter.get_tensor(output_details[0]['index'])
     # now get labels
     labels_indices = np.argmax(output, axis=2)
-    
+
     available_chars = "abcdefghijklmnopqrstuvwxyz"
+
     def decode(li):
         result = []
         for char in li:
             result.append(available_chars[char])
         return "".join(result)
-    
-    # variable labels will contain read captcha codes
-    labels = [decode(x) for x in labels_indices]
+
+    decoded_label = [decode(x) for x in labels_indices][0]
     ```
-    - *tf* is alias for tensorflow package, *np* for numpy
+    - *np* for numpy
 
 ## How to train your own model
 1. Install environment
