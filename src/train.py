@@ -26,7 +26,7 @@ if __name__ == "__main__":
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyz", type=str, help="Labels")
     parser.add_argument("--image_height", default=70, type=int)
     parser.add_argument("--image_width", default=175, type=int)
-    parser.add_argument("--l2", default=0.00001, type=float)
+    parser.add_argument("--l2", default=1e-4, type=float)
     parser.add_argument("--eager_load_data", action="store_true", default=False, help="Must be set true if using tensorflow 2.0. Generator bug.")
 
     args = parser.parse_args()
