@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-from blocks import ResBlock
+from blocks import ResBlock, ResBlockStrided
 
 
 def ResNet(input_shape, output_shape, init_filters: int, l2: float):
@@ -15,15 +15,15 @@ def ResNet(input_shape, output_shape, init_filters: int, l2: float):
     layer = tf.keras.layers.BatchNormalization()(layer)
     layer = tf.keras.layers.ReLU()(layer)
     layer = tf.keras.layers.MaxPooling2D(strides=2)(layer)
-    layer = ResBlock(filters=filters, strides=1, l2=l2)(layer)
-    layer = ResBlock(filters=filters, strides=1, l2=l2)(layer)
+    layer = ResBlock(filters=filters, l2=l2)(layer)
+    layer = ResBlockStrided(filters=filters, strides=2, l2=l2)(layer)
 
     for i in range(3):
         filters *= 2
-        layer = ResBlock(filters=filters, strides=2, l2=l2)(layer)
-        layer = ResBlock(filters=filters, strides=1, l2=l2)(layer)
-        layer = ResBlock(filters=filters, strides=1, l2=l2)(layer)
-        layer = ResBlock(filters=filters, strides=1, l2=l2)(layer)
+        layer = ResBlockStrided(filters=filters, strides=2, l2=l2)(layer)
+        layer = ResBlock(filters=filters, l2=l2)(layer)
+        layer = ResBlock(filters=filters, l2=l2)(layer)
+        layer = ResBlock(filters=filters, l2=l2)(layer)
 
     layer = tf.keras.layers.GlobalAveragePooling2D()(layer)
 

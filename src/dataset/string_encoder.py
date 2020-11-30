@@ -25,9 +25,3 @@ class StringEncoder:
         for char in li:
             result.append(self.decode_char(char))
         return "".join(result)
-
-    # def encode(self, input):
-    #     result = []
-    #     for x in input:
-    #         result.append(self.encode_str(x))
-    #     return np.array(result)

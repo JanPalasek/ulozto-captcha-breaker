@@ -1,31 +1,32 @@
-import cv2
+import tensorflow as tf
+import numpy as np
 
 
 class CaptchaDataset:
-    def __init__(self, annotations_path: str, classes: int):
+    def __init__(self, annotations_path: str, available_chars):
         self._annotations_path = annotations_path
-        self._classes = classes
+        self._available_chars = available_chars
 
-        self._data = self._get_items()
+        self._image_shape = next(self.get_data())[0]
 
     def get_image_shape(self):
-        return self._data[0][0].shape
+        return self._image_shape
 
-    @property
-    def classes(self):
-        return self._classes
-
-    def _get_items(self):
-        result = []
+    def get_data(self):
         with open(self._annotations_path, "r") as file:
             for line in file:
                 image_path, image_label = line.rsplit(maxsplit=1)
-                image_label = list(image_label)
 
-                image = cv2.imread(image_path)
-                result.append((image, image_label))
+                image = tf.keras.preprocessing.image.load_img(image_path, color_mode='rgb')
+                image = tf.keras.preprocessing.image.img_to_array(image)
+                image = image / 255
+                image = 0.299 * image[..., 0] + 0.587 * image[..., 1] + 0.114 * image[..., 2]
+                image = tf.expand_dims(image, axis=-1)
 
-        return result
+                indices = []
+                for c in image_label:
+                    idx = self._available_chars.index(c)
+                    indices.append(idx)
+                indices = tf.convert_to_tensor(indices)
 
-    def get_data(self):
-        return list(zip(*self._data))
+                yield image, indices
