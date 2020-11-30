@@ -1,6 +1,3 @@
-import sys
-sys.path.insert(0, "src")
-
 import argparse
 import os
 import random
@@ -18,7 +15,7 @@ if __name__ == "__main__":
                                                                       "validation. E.g. if 0.1, then 10% of all data are used "
                                                                       "for validation.")
     parser.add_argument("--seed", default=42, type=int)
-    parser.add_argument("--out_dir", type=str, default="out")
+    parser.add_argument("--out_dir", type=str, default="../../out")
     parser.add_argument("--case_sensitive", action="store_true", default=False, help="Boolean switch that is true when "
                                                                                      "captcha label should be case sensitive.")
 

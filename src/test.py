@@ -13,7 +13,7 @@ from dataset.preprocessing.labels_preprocessors.string_encoder import StringEnco
 import numpy as np
 import random
 
-from captcha_detection.captcha_network import CaptchaNetwork
+from captcha_network import CaptchaNetwork
 from dataset.captcha_dataset import CaptchaDataset
 
 import argparse

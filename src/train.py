@@ -1,7 +1,3 @@
-import sys
-
-sys.path.insert(0, "src")
-
 from dataset.preprocessing.image_preprocessors.convert_to_grayscale_preprocessor import ConvertToGrayscalePreprocessor
 from dataset.preprocessing.image_preprocessors.resize_preprocessor import ResizePreprocessor
 
@@ -13,7 +9,7 @@ from dataset.preprocessing.labels_preprocessors.string_encoder import StringEnco
 import numpy as np
 import random
 
-from captcha_detection.captcha_network import CaptchaNetwork
+from captcha_network import CaptchaNetwork
 from dataset.captcha_dataset import CaptchaDataset
 
 import argparse
@@ -33,7 +29,7 @@ if __name__ == "__main__":
                         action="store_true")
     parser.add_argument("--batch_size", default=32, type=int, help="Batch size.")
     parser.add_argument("--epochs", default=1500, type=int, help="Number of epochs.")
-    parser.add_argument("--out_dir", default="out", type=str, help="Out dir")
+    parser.add_argument("--out_dir", default="../out", type=str, help="Out dir")
     parser.add_argument("--seed", default=42, type=int)
     parser.add_argument("--captcha_length", default=4, type=int)
     parser.add_argument("--available_chars", default="abcdefghijklmnopqrstuvwxyz", type=str, help="Labels")
