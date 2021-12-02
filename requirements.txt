@@ -12,12 +12,16 @@ astunparse==1.6.3
     # via tensorflow
 cachetools==4.2.4
     # via google-auth
+captcha==0.3
+    # via -r requirements.in
 certifi==2021.10.8
     # via requests
 charset-normalizer==2.0.8
     # via requests
 cycler==0.11.0
     # via matplotlib
+faker==9.9.0
+    # via -r requirements.in
 flatbuffers==2.0
     # via tensorflow
 fonttools==4.28.2
@@ -74,7 +78,9 @@ packaging==21.3
     #   matplotlib
     #   setuptools-scm
 pillow==8.4.0
-    # via matplotlib
+    # via
+    #   captcha
+    #   matplotlib
 protobuf==3.19.1
     # via
     #   tensorboard
@@ -93,7 +99,9 @@ pyparsing==3.0.6
     #   packaging
     #   pydot
 python-dateutil==2.8.2
-    # via matplotlib
+    # via
+    #   faker
+    #   matplotlib
 requests==2.26.0
     # via
     #   requests-oauthlib
@@ -128,6 +136,8 @@ tensorflow-io-gcs-filesystem==0.22.0
     # via tensorflow
 termcolor==1.1.0
     # via tensorflow
+text-unidecode==1.3
+    # via faker
 tomli==1.2.2
     # via setuptools-scm
 typing-extensions==4.0.1

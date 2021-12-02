@@ -3,3 +3,5 @@ matplotlib
 graphviz
 numpy
 pydot
+faker
+captcha
