@@ -1,11 +1,10 @@
 import sys
-sys.path.insert(0, "src")
 
 import argparse
 import os
 import random
 
-from dataset.annotations_generator import AnnotationsGenerator
+from ulozto_captcha_breaker.dataset.annotations_generator import AnnotationsGenerator
 
 if __name__ == "__main__":
 

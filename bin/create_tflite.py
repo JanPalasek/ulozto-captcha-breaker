@@ -1,5 +1,4 @@
 import sys
-sys.path.insert(0, "src")
 
 import tensorflow as tf
 import argparse

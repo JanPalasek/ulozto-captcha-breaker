@@ -1,20 +1,14 @@
-import sys
-sys.path.insert(0, "src")
+from ulozto_captcha_breaker.dataset.preprocessing.image_preprocessors import ConvertToGrayscalePreprocessor, ResizePreprocessor, NormalizeImagePreprocessor
+from ulozto_captcha_breaker.dataset.preprocessing.image_pipeline import ImagePreprocessorPipeline
 
-from dataset.preprocessing.image_preprocessors.convert_to_grayscale_preprocessor import ConvertToGrayscalePreprocessor
-from dataset.preprocessing.image_preprocessors.resize_preprocessor import ResizePreprocessor
-
-from dataset.preprocessing.image_preprocessors.image_preprocessor_pipeline import ImagePreprocessorPipeline
-from dataset.preprocessing.image_preprocessors.normalize_image_preprocessor import NormalizeImagePreprocessor
-
-from dataset.preprocessing.labels_preprocessors.label_preprocess_pipeline import LabelPreprocessPipeline
-from dataset.preprocessing.labels_preprocessors.string_encoder import StringEncoder
+from ulozto_captcha_breaker.dataset.preprocessing.label_preprocessors import StringEncoder
+from ulozto_captcha_breaker.dataset.preprocessing.label_pipeline import LabelPreprocessPipeline
 
 import numpy as np
 import random
 
-from captcha_detection.captcha_network import CaptchaNetwork
-from dataset.captcha_dataset import CaptchaDataset
+from ulozto_captcha_breaker.captcha_network import CaptchaNetwork
+from ulozto_captcha_breaker.dataset.captcha_dataset import CaptchaDataset
 
 import argparse
 import datetime

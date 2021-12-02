@@ -1,6 +1,6 @@
 import os
 import datetime
-import cv2
+import matplotlib.pyplot as plt
 
 import logging
 
@@ -28,4 +28,6 @@ class FileWriter:
         if img.dtype in [np.float32, np.float64]:
             img = img * 255
             img = img.astype(np.uint8)
-        cv2.imwrite(dest, img)
+
+
+        plt.imsave(dest, img)

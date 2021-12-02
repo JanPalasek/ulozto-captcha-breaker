@@ -1,6 +1,6 @@
 import numpy as np
 
-from utils.file_writer import FileWriter
+from utils import FileWriter
 
 
 class ImagePreprocessorPipeline:
@@ -35,4 +35,3 @@ class ImagePreprocessorPipeline:
                 self._out_writer.save_image(modified_image, category="final")
 
         return np.array(result)
-

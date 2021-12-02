@@ -1,4 +1,4 @@
-import cv2
+import matplotlib.pyplot as plt
 
 
 class CaptchaDataset:
@@ -22,7 +22,7 @@ class CaptchaDataset:
                 image_path, image_label = line.rsplit(maxsplit=1)
                 image_label = list(image_label)
 
-                image = cv2.imread(image_path)
+                image = plt.imread(image_path)
                 result.append((image, image_label))
 
         return result

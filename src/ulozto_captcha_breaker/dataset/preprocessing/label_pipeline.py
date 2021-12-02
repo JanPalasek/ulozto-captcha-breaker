@@ -1,6 +1,6 @@
 import numpy as np
 
-from dataset.preprocessing.labels_preprocessors.string_encoder import StringEncoder
+from ulozto_captcha_breaker.dataset.preprocessing.label_preprocessors import StringEncoder
 
 
 class LabelPreprocessPipeline:
