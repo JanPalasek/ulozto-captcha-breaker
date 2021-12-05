@@ -123,7 +123,7 @@ to captcha displayed in the image.
     
     This script will create *annotations.txt*, *annotations-train.txt*, *annotations-validation.txt* and *annotations-test.txt*.
 
-4. Run training script *src/train.py* for example like this:
+4. Run training script *bin/train.py* for example like this:
     ```shell script
     python bin/train.py --available_chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" --captcha_length=6 
     ```

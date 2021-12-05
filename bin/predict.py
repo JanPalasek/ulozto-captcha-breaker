@@ -3,15 +3,14 @@ import argparse
 from ulozto_captcha_breaker.dataset.preprocessing.image_pipeline import ImagePreprocessorPipeline
 from ulozto_captcha_breaker.dataset.preprocessing.image_preprocessors import ConvertToGrayscalePreprocessor, NormalizeImagePreprocessor, ResizePreprocessor
 from ulozto_captcha_breaker.dataset.preprocessing.label_preprocessors import StringEncoder
-import tensorflow as tf
 import tensorflow.keras as tf_keras
 
 import numpy as np
-import matplotlib.pyplot as plt
+from PIL import Image
 
 
 def main(args):
-    image = plt.imread(args.image_path)
+    image = np.asarray(Image.open(args.image_path))
     image_preprocess_pipeline = ImagePreprocessorPipeline([
         ConvertToGrayscalePreprocessor(),
         NormalizeImagePreprocessor()

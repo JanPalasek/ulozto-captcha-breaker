@@ -1,6 +1,6 @@
 import numpy as np
 
-from utils import FileWriter
+from ulozto_captcha_breaker.utils import FileWriter
 
 
 class ImagePreprocessorPipeline:
