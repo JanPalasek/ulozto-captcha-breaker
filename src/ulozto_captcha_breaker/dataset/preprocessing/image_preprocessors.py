@@ -1,5 +1,5 @@
 import numpy as np
-from PIL import Image
+from skimage.transform import resize
 
 
 class ConvertToGrayscalePreprocessor:
@@ -45,4 +45,4 @@ class ResizePreprocessor:
         self._target_width = target_width
 
     def __call__(self, img: np.ndarray):
-        return img.resize(img, (self._target_width, self._target_height))
+        return resize(img, (self._target_height, self._target_width))

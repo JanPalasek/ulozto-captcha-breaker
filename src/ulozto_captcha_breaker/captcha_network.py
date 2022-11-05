@@ -5,7 +5,7 @@ import tensorflow as tf
 import tensorflow.keras as tf_keras
 # from tensorflow.python.keras.utils.vis_utils import plot_model
 
-from metrics import all_correct_acc
+from ulozto_captcha_breaker.metrics import all_correct_acc
 
 
 class CaptchaNetwork:
@@ -101,10 +101,6 @@ class CaptchaNetwork:
         if args.freeze_layers > 0:
             for i in range(args.freeze_layers):
                 self._model.layers[i].trainable = False
-
-
-        self._loss = tf_keras.losses.SparseCategoricalCrossentropy()
-        self._optimizer = tf_keras.optimizers.Adam()
 
         metrics = [tf_keras.metrics.sparse_categorical_accuracy]
         if not args.save_model_path:
