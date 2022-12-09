@@ -3,8 +3,7 @@ import argparse
 from ulozto_captcha_breaker.dataset.preprocessing.image_pipeline import ImagePreprocessorPipeline
 from ulozto_captcha_breaker.dataset.preprocessing.image_preprocessors import ConvertToGrayscalePreprocessor, NormalizeImagePreprocessor, ResizePreprocessor
 from ulozto_captcha_breaker.dataset.preprocessing.label_preprocessors import StringEncoder
-import tensorflow.keras as tf_keras
-import tensorflow
+import tensorflow as tf
 
 import numpy as np
 from PIL import Image
@@ -19,7 +18,7 @@ def main(args):
     label_decoder = StringEncoder(available_chars=args.available_chars)
 
     # create interpreter
-    interpreter = tensorflow.lite.Interpreter(args.model_path)
+    interpreter = tf.lite.Interpreter(args.model_path)
     interpreter.allocate_tensors()
 
     input_ = image_preprocess_pipeline([image])
