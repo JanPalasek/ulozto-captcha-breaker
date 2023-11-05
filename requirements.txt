@@ -14,7 +14,7 @@ cachetools==5.2.0
     # via google-auth
 captcha==0.4
     # via -r requirements.in
-certifi==2022.9.24
+certifi==2023.7.22
     # via requests
 charset-normalizer==2.1.1
     # via requests
