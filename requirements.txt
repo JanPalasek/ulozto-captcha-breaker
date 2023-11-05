@@ -40,7 +40,7 @@ google-pasta==0.2.0
     # via tensorflow
 graphviz==0.20.1
     # via -r requirements.in
-grpcio==1.50.0
+grpcio==1.53.0
     # via
     #   tensorboard
     #   tensorflow
@@ -138,7 +138,6 @@ six==1.16.0
     #   astunparse
     #   google-auth
     #   google-pasta
-    #   grpcio
     #   keras-preprocessing
     #   python-dateutil
     #   tensorflow
