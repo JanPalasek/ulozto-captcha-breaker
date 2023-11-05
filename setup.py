@@ -15,7 +15,7 @@ setuptools.setup(
     },
     install_requires=[
         "tensorflow>=2.0.0",
-        "matplotlib~=3.5.0"
+        "matplotlib>=3.5.0"
     ],
     packages=setuptools.find_packages("src"),
     scripts=["bin/train.py", "bin/test.py", "bin/predict.py"],

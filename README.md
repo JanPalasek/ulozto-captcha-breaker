@@ -81,10 +81,7 @@ Note that it takes **grayscale images** as the input. RGB images therefore have 
     python -m venv "venv"
     
     source venv/bin/activate # or .\venv\Scripts\activate.ps1 in windows Powershell
-    python -m pip install --upgrade pip
-    python -m pip install --upgrade wheel setuptools pip-tools
-    python -m piptools sync
-    python -m pip install -e .
+    python -m pip install -r "requirements.txt" -e .
     ```
 2. Obtain dataset of captcha images and store it to directory *out/data*. Images are expected to be named according
 to captcha displayed in the image.

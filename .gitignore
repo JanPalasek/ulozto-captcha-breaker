@@ -140,7 +140,9 @@ dmypy.json
 **/.idea/tasks.xml
 
 #vscode
-.vscode
+.vscode/*
+!.vscode/settings.json
 
 out/
 venv/
+model/
