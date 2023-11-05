@@ -1,0 +1,30 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/anaconda
+{
+	"name": "quarto-templates",
+	"build": { 
+		"context": "..",
+		"dockerfile": "Dockerfile",
+		"args": {
+			"USER_ID": "${localEnv:USER_ID}",
+			"USER_NAME": "${localEnv:USER_NAME}",
+			"USER_GID": "${localEnv:USER_GID}",
+			"USER_GNAME": "${localEnv:USER_GNAME}"
+		}
+	},
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "make install_dev",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-toolsai.jupyter",
+				"quarto.quarto",
+				"ritwickdey.LiveServer"
+			]
+		}
+	}
+}
