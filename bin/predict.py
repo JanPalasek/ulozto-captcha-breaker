@@ -6,16 +6,16 @@ from ulozto_captcha_breaker.dataset.preprocessing.label_preprocessors import Str
 import tensorflow as tf
 
 import numpy as np
-from PIL import Image
+import matplotlib.pyplot as plt
 
 
 def main(args):
-    image = np.asarray(Image.open(args.image_path))
+    image = plt.imread(args.image_path)
     image_preprocess_pipeline = ImagePreprocessorPipeline([
         ConvertToGrayscalePreprocessor(),
+        ResizePreprocessor(image.shape[0], image.shape[1]),
         NormalizeImagePreprocessor()
     ])
-    label_decoder = StringEncoder(available_chars=args.available_chars)
 
     # create interpreter
     interpreter = tf.lite.Interpreter(args.model_path)
@@ -29,10 +29,10 @@ def main(args):
 
     # predict and get the output
     output = interpreter.get_tensor(output_details[0]['index'])
-
     output_label = np.argmax(output, axis=2)[0]
 
     # now get labels
+    label_decoder = StringEncoder(available_chars=args.available_chars)
     decoded_label = label_decoder.decode(output_label)
     
     print("Decoded label is the following:")
